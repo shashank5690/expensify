@@ -8,9 +8,10 @@ import Animated, {
   interpolate,
   Extrapolation,
 } from 'react-native-reanimated';
-import data from './data/data'; // Ensure the correct path
-import Pagination from './Components/Pagination'; // Ensure the correct path
-import CustomButton from './Components/CustomButton';
+import data from './data/data'; 
+import Pagination from './Components/Pagination/Pagination'; 
+import CustomButton from './Components/CustomButton/CustomButton';
+import styles from './StylesOnboars';
 
 
 interface DataItem {
@@ -145,8 +146,7 @@ const OnboardScreen: React.FC = () => {
         renderItem={({ item, index }: { item: DataItem; index: number }) => (
           <RenderItem item={item} index={index} />
         )}
-        keyExtractor={(item) => item.id.toString()} // Ensure id is a string
-        scrollEventThrottle={16}
+        keyExtractor={(item) => item.id.toString()} 
         horizontal
         bounces={false}
         pagingEnabled
@@ -155,7 +155,7 @@ const OnboardScreen: React.FC = () => {
         viewabilityConfig={{
           minimumViewTime: 300,
           viewAreaCoveragePercentThreshold: 10,
-        } as ViewabilityConfig} // Explicitly type viewabilityConfig
+        } as ViewabilityConfig} 
       />
       <View style={styles.bottomContainer}>
         <Pagination data={data} x={x} screenWidth={SCREEN_WIDTH} />
@@ -174,56 +174,4 @@ const OnboardScreen: React.FC = () => {
 
 export default OnboardScreen;
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#23303B',
-    height: '100%',
-  },
-  itemContainer: {
-    flex: 1,
-    justifyContent: 'center', // Changed to center for better alignment
-    alignItems: 'center',
-    backgroundColor: '#23303B',
-  },
-  image: {
-    width: '100%',
-    height: '100%',
-    resizeMode: 'cover',
-  },
-  itemTitle: {
-    textAlign: 'left',
-    fontSize: 32,
-    fontWeight: '500',
-    color: '#FFFFFF',
-    bottom:200,
-    marginLeft: -30,
-    fontFamily: 'Sofia Pro',
-  },
-  itemTitleLastPart:{
-    textAlign: 'left',
-    fontSize: 32,
-    fontWeight: '500',
-    marginBottom: 10,
-    color: '#456EFE',
-    bottom:200,
-    marginLeft: -30,
-    fontFamily: 'Sofia Pro',
-  },
-  itemText: {
-    marginLeft: -30,
-    marginTop: 10,
-    color: '#8E949A',
-    lineHeight: 25,
-    bottom:200,
-    fontSize:16,
-  },
-  bottomContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginHorizontal: 10,
-    paddingVertical: 20,
-    marginLeft: 30,
-    bottom: 150,
-  },
-});
+

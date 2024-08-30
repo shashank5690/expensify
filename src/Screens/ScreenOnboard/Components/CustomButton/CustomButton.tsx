@@ -6,8 +6,8 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
+import styles from './StylesCustomButton';
 
-// Define the props interface for CustomButton
 interface CustomButtonProps {
   flatListRef: React.RefObject<Animated.FlatList<any>>;
   flatListIndex: Animated.SharedValue<number>;
@@ -15,7 +15,7 @@ interface CustomButtonProps {
 }
 
 const CustomButton: React.FC<CustomButtonProps> = ({ flatListRef, flatListIndex, dataLength }) => {
-  // Define the navigation prop
+
   // const navigation = useNavigation<NavigationProp<any>>();
 
   const buttonAnimationStyle = useAnimatedStyle(() => {
@@ -71,7 +71,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({ flatListRef, flatListIndex,
         SKIP
       </Animated.Text>
       <Animated.Image
-        source={require('../assets/ArrowIcon.png')}
+        source={require('../../assets/ArrowIcon.png')}
         style={[styles.arrow, arrowAnimationStyle]}
       />
     </Animated.View>
@@ -82,22 +82,3 @@ const CustomButton: React.FC<CustomButtonProps> = ({ flatListRef, flatListIndex,
 
 export default CustomButton;
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#4F5962',
-    padding:5,
-    borderRadius: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-    
-  },
-  arrow: {
-    position: 'absolute',
-  },
-  textButton: {
-    color: '#C8CBCE',
-    fontSize: 18,
-    position: 'absolute',
-    fontWeight: '500',
-  },
-});

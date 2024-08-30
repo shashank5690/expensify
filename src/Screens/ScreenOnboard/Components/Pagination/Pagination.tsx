@@ -5,8 +5,9 @@ import Animated, {
   interpolate,
   Extrapolation,
 } from 'react-native-reanimated';
+import styles from './StylesPagination';
 
-// Define the props interface for Pagination
+
 interface PaginationProps {
   data: Array<any>; 
   x: Animated.SharedValue<number>;
@@ -49,17 +50,4 @@ const Pagination: React.FC<PaginationProps> = ({ data, x, screenWidth }) => {
 
 export default Pagination;
 
-const styles = StyleSheet.create({
-  paginationContainer: {
-    flexDirection: 'row',
-    height: 40,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  dots: {
-    height: 10,
-    backgroundColor: 'white',
-    marginHorizontal: 10,
-    borderRadius: 5,
-  },
-});
+
