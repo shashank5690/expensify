@@ -16,7 +16,7 @@
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		9600D447024B6481225418BF /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 19E10F7B948B60D417E6B7B2 /* PrivacyInfo.xcprivacy */; };
 		FDBB679142B84DFAB6353AA2 /* Sofia Pro.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4C14E5ED2F1E43FCB4E6E587 /* Sofia Pro.otf */; };
-		354C09FDB99C4426B26C7312 /* Sofia Pro Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2BFB68329DED427CBC66A6B5 /* Sofia Pro Bold.otf */; };
+		AE61D3EDA4CC4F0E9337DDF3 /* Sofia Pro Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E965542C820C419BA98C7C94 /* Sofia Pro Bold.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,7 +50,7 @@
 		89C6BE57DB24E9ADA2F236DE /* Pods-expensify-expensifyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-expensify-expensifyTests.release.xcconfig"; path = "Target Support Files/Pods-expensify-expensifyTests/Pods-expensify-expensifyTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		4C14E5ED2F1E43FCB4E6E587 /* Sofia Pro.otf */ = {isa = PBXFileReference; name = "Sofia Pro.otf"; path = "../src/assets/fonts/Sofia Pro.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		2BFB68329DED427CBC66A6B5 /* Sofia Pro Bold.otf */ = {isa = PBXFileReference; name = "Sofia Pro Bold.otf"; path = "../src/assets/fonts/Sofia Pro Bold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		E965542C820C419BA98C7C94 /* Sofia Pro Bold.otf */ = {isa = PBXFileReference; name = "Sofia Pro Bold.otf"; path = "../src/assets/fonts/Sofia Pro Bold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,7 +162,7 @@
 			isa = "PBXGroup";
 			children = (
 				4C14E5ED2F1E43FCB4E6E587 /* Sofia Pro.otf */,
-				2BFB68329DED427CBC66A6B5 /* Sofia Pro Bold.otf */,
+				E965542C820C419BA98C7C94 /* Sofia Pro Bold.otf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -265,7 +265,7 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				9600D447024B6481225418BF /* PrivacyInfo.xcprivacy in Resources */,
 				FDBB679142B84DFAB6353AA2 /* Sofia Pro.otf in Resources */,
-				354C09FDB99C4426B26C7312 /* Sofia Pro Bold.otf in Resources */,
+				AE61D3EDA4CC4F0E9337DDF3 /* Sofia Pro Bold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
