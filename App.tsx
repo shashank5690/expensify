@@ -1,10 +1,15 @@
 import React from 'react';
-import { View } from 'react-native';
+import { SafeAreaView, StatusBar, View } from 'react-native';
 import OnboardScreen from './src/Screens/ScreenOnboard/ScreenOnboard';
+import Dashboard from './src/Screens/ScreenDashboard/ScreenDashboard';
 
 const App = () => (
-  <View>
-    <OnboardScreen/>
+  <View style={{flexGrow:1}}>
+      <StatusBar
+        translucent
+        backgroundColor="transparent"
+      />
+    <Dashboard />
   </View>
 );
 

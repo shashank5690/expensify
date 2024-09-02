@@ -27,7 +27,6 @@ const OnboardScreen: React.FC = () => {
   const x = useSharedValue(0);
   const flatListIndex = useSharedValue<number>(0);
 
-  // Corrected onViewableItemsChanged handler
   const onViewableItemsChanged = ({ viewableItems }: { viewableItems: ViewToken<DataItem>[] }) => {
     const firstViewableItem = viewableItems[0];
     if (firstViewableItem?.index !== undefined) {
