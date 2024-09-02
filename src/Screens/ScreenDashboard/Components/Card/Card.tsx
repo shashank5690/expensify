@@ -23,7 +23,7 @@ const Card: React.FC = () => {
       </View>
       <Text style={styles.cardHolderLabel}>Card Holder</Text>
       <View style={styles.cardFooter}>
-        <Text style={styles.cardHolderName}>Shashank Mehra</Text>
+        <Text style={styles.cardHolderName}>Rohit Mehra</Text>
         <MasterLogo />
       </View>
     </View>
@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
     marginVertical: 10,
+    opacity: 1,
   },
   balanceRow: {
     flexDirection: 'row',
