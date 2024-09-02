@@ -50,6 +50,7 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>Sofia Pro.otf</string>
+		<string>Sofia Pro Bold.otf</string>
 	</array>
 </dict>
 </plist>
