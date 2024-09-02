@@ -2,6 +2,10 @@
   "migIndex": 1,
   "data": [
     {
+      "path": "src/assets/fonts/Sofia Pro Bold.otf",
+      "sha1": "cc5717c99183d0009be73de5f938680aea962c7f"
+    },
+    {
       "path": "src/assets/fonts/Sofia Pro.otf",
       "sha1": "5bb36b9218ece13431f76663d000433a9b37cba1"
     }

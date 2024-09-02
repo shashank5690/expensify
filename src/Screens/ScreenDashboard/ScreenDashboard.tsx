@@ -1,18 +1,24 @@
-// Dashboard.tsx
-import React from 'react';
-import { View, Text, StyleSheet, StatusBar } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, StatusBar, TouchableOpacity, ScrollView } from 'react-native';
 import Bell from './assets/Bell';
 import Profile from './assets/Profile';
 import Card from './Components/Card/Card';
 import Month from './assets/Month';
 import Week from './assets/Week';
 import Day from './assets/Day';
+import Expenses from './Components/Expenses/Expenses'; // Import the new Expenses component
 
 const Dashboard: React.FC = () => {
+  const [selectedExpense, setSelectedExpense] = useState<string | null>(null);
+
+  const handleSelectExpense = (expense: string) => {
+    setSelectedExpense(expense === selectedExpense ? null : expense);
+  };
+
   return (
     <View style={styles.container}>
       <StatusBar translucent backgroundColor="transparent" />
-      
+
       {/* Header Section */}
       <View style={styles.header}>
         <Profile />
@@ -23,27 +29,36 @@ const Dashboard: React.FC = () => {
       {/* Content Section */}
       <View style={styles.content}>
         <Card />
+
+        {/* Quick Actions Section */}
         <Text style={styles.quickActionsText}>Quick Actions</Text>
         <View style={styles.actionsContainer}>
-          <View style={styles.actionCard}>
+          <TouchableOpacity style={styles.actionCard}>
             <Month style={styles.icon1} />
             <Text style={styles.actionText1}>Month</Text>
-          </View>
-          <View style={styles.actionCard}>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.actionCard}>
             <Week style={styles.icon2} />
             <Text style={styles.actionText2}>Week</Text>
-          </View>
-          <View style={styles.actionCard}>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.actionCard}>
             <Day style={styles.icon3} />
             <Text style={styles.actionText3}>Day</Text>
-          </View>
+          </TouchableOpacity>
         </View>
+
+        {/* Expenses Section */}
+        <Expenses
+          selectedExpense={selectedExpense}
+          onSelectExpense={handleSelectExpense}
+        />
       </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  // Original styles for Dashboard component
   container: {
     flex: 1,
     backgroundColor: '#FFFFFF',
@@ -55,6 +70,7 @@ const styles = StyleSheet.create({
     padding: 16,
     backgroundColor: '#fff',
     marginTop: 30,
+    fontFamily: 'Sofia Pro',
   },
   headerText: {
     fontSize: 24,
@@ -69,21 +85,21 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: '#000',
     marginBottom: 12,
-    fontWeight: '600',
     marginTop: 12,
+    fontFamily: 'Sofia Pro Bold',
   },
   actionsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
   actionCard: {
-    width: 118,
-    height: 120,
+    width: 110,
+    height: 110,
     backgroundColor: '#fff',
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    shadowColor: '#6c757d',
+    shadowColor: '#adb5bd',
     shadowOffset: { width: 4, height: 8 },
     shadowOpacity: 1,
     shadowRadius: 12,
@@ -97,23 +113,23 @@ const styles = StyleSheet.create({
     marginBottom: 2,
   },
   icon3: {
-    top:10,
+    top: 10,
   },
   actionText1: {
     fontSize: 14,
-    fontWeight: '500',
     color: '#000',
     bottom: 36,
+    fontFamily: 'Sofia Pro Bold',
   },
   actionText2: {
     fontSize: 14,
-    fontWeight: '500',
+    fontFamily: 'Sofia Pro Bold',
     color: '#000',
     bottom: 36,
   },
   actionText3: {
     fontSize: 14,
-    fontWeight: '500',
+    fontFamily: 'Sofia Pro Bold',
     color: '#000',
     top: 10,
     left: 5,

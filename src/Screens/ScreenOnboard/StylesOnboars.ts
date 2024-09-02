@@ -19,21 +19,19 @@ const styles = StyleSheet.create({
     itemTitle: {
       textAlign: 'left',
       fontSize: 32,
-      fontWeight: '600',
       color: '#FFFFFF',
       bottom:200,
       marginLeft: -30,
-      fontFamily: 'Sofia Pro',
+      fontFamily: 'Sofia Pro Bold',
     },
     itemTitleLastPart:{
       textAlign: 'left',
       fontSize: 32,
-      fontWeight: '600',
       marginBottom: 10,
       color: '#456EFE',
       bottom:200,
       marginLeft: -30,
-      fontFamily: 'Sofia Pro',
+      fontFamily: 'Sofia Pro Bold',
     },
     itemText: {
       marginLeft: -30,
@@ -42,6 +40,7 @@ const styles = StyleSheet.create({
       lineHeight: 25,
       bottom:200,
       fontSize:16,
+      fontFamily: 'Sofia Pro',
     },
     bottomContainer: {
       flexDirection: 'row',
