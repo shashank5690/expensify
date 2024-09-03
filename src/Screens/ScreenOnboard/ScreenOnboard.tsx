@@ -11,7 +11,7 @@ import Animated, {
 import data from './data/data'; 
 import Pagination from './Components/Pagination/Pagination'; 
 import CustomButton from './Components/CustomButton/CustomButton';
-import styles from './StylesOnboars';
+import styles from './StylesOnboard';
 
 
 interface DataItem {
