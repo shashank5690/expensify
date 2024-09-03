@@ -6,8 +6,10 @@ import ScreenTransfer from './src/Screens/ScreenTransfer/ScreenTransfer';
 import ScreenLogin from './src/Screens/ScreenLogin/ScreenLogin';
 import ScreenSignup from './src/Screens/ScreenSignUp/ScreenSignUp';
 import ScreenTransferSuccess from './src/Screens/ScreenTransferSuccess/ScreenTransferSuccess';
-import AddTransaction from './src/Screens/ScreenAddTransaction/AddTransaction';
 import ScreenScanner from './src/Screens/ScreenScanner/ScreenScanner';
+import AddTransaction from './src/Screens/ScreenAddTransaction/AddTransaction';
+
+ 
 
 const App = () => (
   <View style={{flexGrow:1}}>
@@ -17,8 +19,8 @@ const App = () => (
     {/* <ScreenSignup/> */}
     {/* <OnboardScreen/> */}
     {/* <Dashboard/> */}
-   {/* <AddTransaction/> */}
-   <ScreenScanner/>
+   {/* <ScreenScanner/> */}
+   <AddTransaction/>
     </View>
 
 );
