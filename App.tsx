@@ -2,15 +2,18 @@ import React from 'react';
 import { SafeAreaView, StatusBar, View } from 'react-native';
 import OnboardScreen from './src/Screens/ScreenOnboard/ScreenOnboard';
 import Dashboard from './src/Screens/ScreenDashboard/ScreenDashboard';
+import ScreenTransfer from './src/Screens/ScreenTransfer/ScreenTransfer';
+import ScreenLogin from './src/Screens/ScreenLogin/ScreenLogin';
+import ScreenSignup from './src/Screens/ScreenSignUp/ScreenSignUp';
+import ScreenTransferSuccess from './src/Screens/ScreenTransferSuccess/ScreenTransferSuccess';
 
 const App = () => (
   <View style={{flexGrow:1}}>
-      <StatusBar
-        translucent
-        backgroundColor="transparent"
-      />
-    <Dashboard />
-  </View>
+   <ScreenTransfer/>
+     {/* <ScreenTransferSuccess/> */}
+    {/* <ScreenLogin/> */}
+    {/* <ScreenSignup/> */}
+    </View>
 );
 
 export default App;

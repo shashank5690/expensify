@@ -1,10 +1,9 @@
-import { FontWeight } from './../../../node_modules/react-native-svg/src/lib/extract/types';
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
     container: {
-     flexGrow:1,
-     justifyContent: 'flex-start', 
+     flex:1,
+     backgroundColor:'white',
     },
     navbar: {
       flexDirection: 'row',
@@ -24,7 +23,7 @@ export const styles = StyleSheet.create({
     sure:{
         fontFamily: 'Sofia Pro Bold',
         fontSize: 30,
-        fontWeight: '700',
+        fontWeight: '600',
         lineHeight: 39,
         textAlign: 'center',
         color: '#456EFE',
@@ -104,6 +103,7 @@ export const styles = StyleSheet.create({
         fontWeight: '600',
         lineHeight: 30,
         textAlign: 'center',
+        color:'grey'
       },
       button: {
         width: 316,

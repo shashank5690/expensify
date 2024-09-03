@@ -33,7 +33,7 @@ export const styles = StyleSheet.create({
         height: 63,            
         borderRadius: 10,
         backgroundColor: '#FFFFFF',
-        right:10
+        right:8
     },
     input: {
         color: '#A4A9AE',
@@ -48,7 +48,7 @@ export const styles = StyleSheet.create({
         borderRadius: 10,
         backgroundColor: '#456EFE',
         justifyContent: 'center',
-        marginBottom: 20,            
+        bottom:10,            
     },
     button: {
         borderRadius: 10,
@@ -73,15 +73,15 @@ export const styles = StyleSheet.create({
         termsContainer: {
           flexDirection: 'row',
           alignItems: 'center',
-          marginBottom: 20,
-          right:20,
+        //   marginBottom: 20,
+          right:50,
           
         },
         checkbox: {
-          width: 18.23,
-          height: 17.83,
+            width: 64,
+            height: 64,
           borderRadius: 4,
-          marginRight: 10, 
+        //   marginRight: 10, 
         },
         termsText: {
           fontFamily: 'Sofia Pro',
@@ -89,6 +89,7 @@ export const styles = StyleSheet.create({
           fontWeight: '500',
           lineHeight: 23.44,
           color: '#FFFFFF',
+          bottom:15,
         },
     finger: {
      width: 66.36,
@@ -99,7 +100,7 @@ export const styles = StyleSheet.create({
     left:10   
     },
     MyCircleSvg: {
-        top: -205,
+        top: -190,
         left: 245,
         position: 'absolute',
     },

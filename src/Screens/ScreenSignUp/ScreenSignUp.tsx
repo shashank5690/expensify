@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import {
   View,
   Text,
@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
   Platform,
+  Pressable,
 } from 'react-native';
 import {styles} from './styleSignUp';
 import {SignUpFormData} from './utils/types';
@@ -16,8 +17,8 @@ import {TextInput} from 'react-native';
 import Finger from '../ScreenFingerprint/Assets/Finger';
 import MyCircleSvg from '../ScreenFingerprint/Assets/MyCircleSvg';
 import PasswordWhitebg from '../../assets/PasswordWhitebg';
-// @ts-ignore
-import CheckBox from 'react-native-checkbox';
+import AnimatedCheckbox from 'react-native-checkbox-reanimated';
+
 
 const ScreenSignup = () => {
   const {
@@ -27,7 +28,11 @@ const ScreenSignup = () => {
   } = useForm<SignUpFormData>({
     resolver: yupResolver(signUpSchema),
   });
-  const [agreeTerms, setAgreeTerms] = React.useState(false);
+  const [agreeTerms, setAgreeTerms] = useState(false);
+
+  const handleCheckboxPress = () => {
+    setAgreeTerms(prev => !prev);
+  };
 
   return (
     <KeyboardAvoidingView
@@ -131,13 +136,15 @@ const ScreenSignup = () => {
           </View>
 
           <View style={styles.termsContainer}>
-            <CheckBox
-              label="I agree with Terms & Conditions"
-              checked={agreeTerms}
-              onChange={(checked: boolean | ((prevState: boolean) => boolean)) => setAgreeTerms(checked)}
-              checkboxStyle={styles.checkbox}
-              labelStyle={styles.termsText}
-            />
+            <Pressable onPress={handleCheckboxPress} style={styles.checkbox}>
+              <AnimatedCheckbox
+                checked={agreeTerms}
+                highlightColor="#4444ff"
+                checkmarkColor="#ffffff"
+                boxOutlineColor="#4444ff"
+              />
+            </Pressable>
+            <Text style={styles.termsText}>I agree with <Text style={{color:'#456EFE'}}>Terms & Conditions</Text></Text>
           </View>
 
           <View style={styles.buttoncontainer}>
@@ -146,7 +153,7 @@ const ScreenSignup = () => {
             </TouchableOpacity>
           </View>
 
-          <Text style={styles.forget}>Don't have an account? Sign Up</Text>
+          <Text style={styles.forget}>Already have an account? <Text style={{color: 'white'}}>Login</Text></Text>
         </View>
       </ScrollView>
     </KeyboardAvoidingView>
