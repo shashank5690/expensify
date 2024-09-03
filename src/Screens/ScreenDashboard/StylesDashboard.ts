@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
       fontSize: 24,
       fontWeight: '600',
       color: '#23303B',
+      fontFamily: 'Sofia Pro Bold',
     },
     content: {
       flex: 1,
