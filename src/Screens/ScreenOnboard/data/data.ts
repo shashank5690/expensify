@@ -20,6 +20,7 @@ const data: DataItem[] = [
     title: 'Access to Your\nData Anytime,\nAnywhere',
     text: 'Expensify allows you to access your Expenses\nanytime and anywhere.',
   },
+  
 
 ];
 
