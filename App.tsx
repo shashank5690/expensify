@@ -7,6 +7,7 @@ import ScreenLogin from './src/Screens/ScreenLogin/ScreenLogin';
 import ScreenSignup from './src/Screens/ScreenSignUp/ScreenSignUp';
 import ScreenTransferSuccess from './src/Screens/ScreenTransferSuccess/ScreenTransferSuccess';
 import AddTransaction from './src/Screens/ScreenAddTransaction/AddTransaction';
+import ScreenScanner from './src/Screens/ScreenScanner/ScreenScanner';
 
 const App = () => (
   <View style={{flexGrow:1}}>
@@ -16,8 +17,10 @@ const App = () => (
     {/* <ScreenSignup/> */}
     {/* <OnboardScreen/> */}
     {/* <Dashboard/> */}
-   <AddTransaction/>
+   {/* <AddTransaction/> */}
+   <ScreenScanner/>
     </View>
+
 );
 
 export default App;
