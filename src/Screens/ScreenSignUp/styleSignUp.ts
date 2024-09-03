@@ -17,9 +17,9 @@ export const styles = StyleSheet.create({
     text: {
         fontSize: 30,
         lineHeight: 43.95,
-        fontFamily:'Sofia Pro',
+        fontFamily:'Sofia Pro Bold',
         color: '#FFFFFF',
-        marginBottom: 40,            
+        marginBottom: 30,            
     },
     stylefield: {
         width: 316,

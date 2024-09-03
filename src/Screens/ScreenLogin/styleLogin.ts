@@ -11,12 +11,12 @@ export const styles = StyleSheet.create({
     },
     innerContainer: {
         alignItems: 'center',   
-        top:150,     
+        top:130,     
     },
     text: {
         fontSize: 30,
         lineHeight: 43.95,
-        fontFamily: 'Sofia Pro',
+        fontFamily: 'Sofia Pro Bold',
         color: '#FFFFFF',
         marginBottom: 40,            
     },
@@ -53,7 +53,7 @@ export const styles = StyleSheet.create({
         borderRadius: 10,
     },
     buttonText: {
-        fontFamily: 'Sofia Pro',
+        fontFamily: 'Sofia Pro Bold',
         fontSize: 20,
         fontWeight: '400',
         lineHeight: 59.3,
@@ -86,7 +86,7 @@ export const styles = StyleSheet.create({
         lineHeight: 26.37,
         textAlign: 'center',
         color: '#8E949A',
-        marginTop: 20,
+        marginTop: 10,
     },
     signup: {
         color: 'white',
