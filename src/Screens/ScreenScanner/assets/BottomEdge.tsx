@@ -13,7 +13,7 @@ const BottomEdge: React.FC<SVGProps> = ({ width = 311, height = 45, fill = "#233
     height={height}
     viewBox="0 0 311 45"
     fill="none"
-    {...props} // No rotation style applied here
+    {...props} 
   >
     <Path
       fillRule="evenodd"
