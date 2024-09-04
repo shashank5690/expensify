@@ -9,7 +9,8 @@ export type AuthStackParamList = {
 
 export type AppStackParamList = {
     Dashboard: undefined;
-
+    AddTransaction: undefined;
+    Scanner:undefined;
 };
 
 

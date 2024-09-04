@@ -6,14 +6,13 @@ import { RootState } from '../utils/redux/store';
 import ScreenLogin from '../Screens/ScreenLogin/ScreenLogin';
 import ScreenSignup from '../Screens/ScreenSignUp/ScreenSignUp';
 import OnboardScreen from '../Screens/ScreenOnboard/ScreenOnboard';
-import Dashboard from '../Screens/ScreenDashboard/ScreenDashboard';
-import { AuthStackParamList, AppStackParamList } from '../utils/types/interface';
+import { AuthStackParamList } from '../utils/types/interface';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { setUser } from '../Screens/ScreenLogin/redux/authSlice';
 import auth from '@react-native-firebase/auth';
+import BottomNavigation from './BottomNavigation';
 
 const AuthStack = createStackNavigator<AuthStackParamList>();
-const AppStack = createStackNavigator<AppStackParamList>();
 
 const AppNavigator: React.FC = () => {
   const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
@@ -49,9 +48,7 @@ const AppNavigator: React.FC = () => {
   return (
     <NavigationContainer>
       {isAuthenticated ? (
-        <AppStack.Navigator initialRouteName="Dashboard">
-          <AppStack.Screen name="Dashboard" component={Dashboard} options={{ headerShown: false }} />
-        </AppStack.Navigator>
+         <BottomNavigation/>
       ) : (
         <AuthStack.Navigator initialRouteName="OnboardScreen">
           <AuthStack.Screen name="OnboardScreen" component={OnboardScreen} options={{ headerShown: false }} />
