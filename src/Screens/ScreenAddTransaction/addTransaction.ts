@@ -48,7 +48,17 @@ export const  styles = StyleSheet.create({
     padding: 10, 
     color: '#333', 
   },
-
+  datePickerButton: {
+    padding: 20,
+    marginVertical: 10,
+    backgroundColor: '#ddd',
+    borderRadius: 5,
+    alignItems: 'center',
+    top:60
+  },
+  datePickerButtonText: {
+    color: '#456EFE',
+  },
   inputDescription: {
     marginBottom: 15,
     fontSize: 18,
@@ -92,6 +102,8 @@ export const  styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between', 
     marginVertical: 20, 
+    position:'relative',
+    top:60
   },
   button: {
     flex: 1, 
