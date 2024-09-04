@@ -12,6 +12,8 @@ import data from './data/data';
 import Pagination from './Components/Pagination/Pagination'; 
 import CustomButton from './Components/CustomButton/CustomButton';
 import styles from './StylesOnboard';
+import { OnboardScreenProps } from '../../utils/types/interface';
+import { useDispatch } from 'react-redux';
 
 
 interface DataItem {
@@ -21,7 +23,8 @@ interface DataItem {
   text: string;
 }
 
-const OnboardScreen: React.FC = () => {
+const OnboardScreen: React.FC<OnboardScreenProps> = () => {
+  const dispatch = useDispatch();
   const { width: SCREEN_WIDTH } = useWindowDimensions();
   const flatListRef = useAnimatedRef<Animated.FlatList<DataItem>>();
   const x = useSharedValue(0);
