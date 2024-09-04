@@ -16,7 +16,7 @@ interface CustomButtonProps {
 
 const CustomButton: React.FC<CustomButtonProps> = ({ flatListRef, flatListIndex, dataLength }) => {
 
-  // const navigation = useNavigation<NavigationProp<any>>();
+  const navigation = useNavigation<NavigationProp<any>>();
 
   const buttonAnimationStyle = useAnimatedStyle(() => {
     return {
@@ -64,7 +64,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({ flatListRef, flatListIndex,
 
     <TouchableWithoutFeedback
     onPress={() => {
-      // navigation.navigate('Home');
+      navigation.navigate('ScreenLogin');
     }}>
     <Animated.View style={[styles.container, buttonAnimationStyle]}>
       <Animated.Text style={[styles.textButton, textAnimationStyle]}>

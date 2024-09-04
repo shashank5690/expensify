@@ -8,11 +8,19 @@ import { loginSchema } from './utils/LoginValidation';
 import { TextInput } from 'react-native';
 import Finger from '../ScreenFingerprint/Assets/Finger';
 import MyCircleSvg from '../ScreenFingerprint/Assets/MyCircleSvg';
+import { LoginScreenProps } from '../../utils/types/interface';
+import { loginUser } from '../../utils/firebaseAuth';
+import { useDispatch } from 'react-redux';
 
-const ScreenLogin = () => {
+const ScreenLogin: React.FC<LoginScreenProps> = ({ navigation }) => {
   const { control, handleSubmit, formState: { errors } } = useForm<LoginFormData>({
     resolver: yupResolver(loginSchema),
   });
+  const dispatch = useDispatch();
+
+  const onSubmit = (data: LoginFormData) => {
+    loginUser(data.email, data.password, dispatch);
+  }
 
   return (
     <KeyboardAvoidingView
@@ -30,18 +38,18 @@ const ScreenLogin = () => {
           <View style={styles.stylefield}>
             <Controller
               control={control}
-              name="username"
+              name="email"
               render={({ field: { onChange, value } }) => (
                 <TextInput
                   style={styles.input}
-                  placeholder="Username"
+                  placeholder="Email"
                   placeholderTextColor="#A4A9AE"
                   onChangeText={onChange}
                   value={value}
                 />
               )}
             />
-            {errors.username && <Text>{errors.username.message}</Text>}
+            {errors.email && <Text>{errors.email.message}</Text>}
           </View>
 
           <View style={styles.stylefield2}>
@@ -63,19 +71,19 @@ const ScreenLogin = () => {
           </View>
 
           <View style={styles.buttoncontainer}>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity style={styles.button} onPress={handleSubmit(onSubmit)}>
               <Text style={styles.buttonText}>Login</Text>
             </TouchableOpacity>
           </View>
 
-          <Text style={styles.forget}>Forget User / Password ?</Text>
+          <Text style={styles.forget}>Forget Email / Password ?</Text>
 
           <View style={styles.finger}>
             <Finger />
           </View>
 
           <Text style={styles.signuptext}>
-            Don’t have an account? <Text style={styles.signup}>Sign Up</Text>
+            Don’t have an account? <Text style={styles.signup} onPress={() => navigation.navigate('ScreenSignup')}>Sign in</Text>
           </Text>
 
           

@@ -9,13 +9,22 @@ import Day from './assets/Day';
 import Expenses from './Components/Expenses/Expenses';
 import Transactions from './Components/Transaction/Transactions';
 import styles from './StylesDashboard';
+import { DashboardProps } from '../../utils/types/interface';
+import { useDispatch } from 'react-redux';
+import { logoutUser } from '../../utils/firebaseAuth';
+import Logout from './assets/Logout';
 
-const Dashboard: React.FC = () => {
+const Dashboard: React.FC<DashboardProps> = () => {
+  const dispatch = useDispatch();
   const [selectedExpense, setSelectedExpense] = useState<string | null>(null);
 
   const handleSelectExpense = (expense: string) => {
     setSelectedExpense(expense === selectedExpense ? null : expense);
   };
+
+  const handleLogout = () => {
+    logoutUser(dispatch);
+  }
 
   const renderContent = () => {
     return (
@@ -55,7 +64,11 @@ const Dashboard: React.FC = () => {
       <View style={styles.header}>
         <Profile />
         <Text style={styles.headerText}>Expensify</Text>
-        <Bell />
+        <TouchableOpacity onPress={handleLogout} style={styles.logoutButton}>
+          <View style={styles.logoutIconContainer}>
+            <Logout style={styles.logoutIcon} />
+          </View>
+        </TouchableOpacity>
       </View>
 
       <FlatList
