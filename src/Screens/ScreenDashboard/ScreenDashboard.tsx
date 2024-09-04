@@ -22,7 +22,6 @@ const Dashboard: React.FC = () => {
       <View style={styles.content}>
         <Card />
 
-        {/* Quick Actions Section */}
         <Text style={styles.quickActionsText}>Quick Actions</Text>
         <View style={styles.actionsContainer}>
           <TouchableOpacity style={styles.actionCard}>
@@ -39,13 +38,11 @@ const Dashboard: React.FC = () => {
           </TouchableOpacity>
         </View>
 
-        {/* Expenses Section */}
         <Expenses
           selectedExpense={selectedExpense}
           onSelectExpense={handleSelectExpense}
         />
 
-        {/* Latest Transactions Section */}
         <Transactions />
       </View>
     );
@@ -55,14 +52,12 @@ const Dashboard: React.FC = () => {
     <View style={styles.container}>
       <StatusBar translucent backgroundColor="transparent" />
 
-      {/* Header Section */}
       <View style={styles.header}>
         <Profile />
         <Text style={styles.headerText}>Expensify</Text>
         <Bell />
       </View>
 
-      {/* Using FlatList as the main scroll container */}
       <FlatList
         data={[{ key: 'content' }]} 
         renderItem={renderContent}

@@ -23,7 +23,7 @@ const Card: React.FC = () => {
       </View>
       <Text style={styles.cardHolderLabel}>Card Holder</Text>
       <View style={styles.cardFooter}>
-        <Text style={styles.cardHolderName}>Rohit Mehra</Text>
+        <Text style={styles.cardHolderName}>Rohit Shashank</Text>
         <MasterLogo style={styles.master}/>
       </View>
     </View>

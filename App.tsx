@@ -29,9 +29,9 @@ const App = () => (
         tabBarActiveTintColor: '#466EFA',
         tabBarInactiveTintColor: 'gray',
         tabBarStyle:{
-          paddingTop:10,
-          paddingBottom:10,
-          height:70,
+          paddingTop:20,
+          paddingBottom:20,
+          height:80,
         }
       })}
     >
