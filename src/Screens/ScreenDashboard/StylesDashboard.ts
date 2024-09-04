@@ -35,6 +35,25 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       justifyContent: 'space-between',
     },
+    logoutButton:{
+      width: 24,
+      height: 24,
+      right: 10,
+    },
+    logoutIconContainer: {
+      backgroundColor: '#ced4da',
+      borderRadius: 50, 
+      width: 40,
+      height: 40,
+      justifyContent: 'center',
+      alignItems: 'center',
+      right: 10,
+      bottom: 8,
+    },
+    logoutIcon: {
+      width: 16,
+      height: 16,
+    },
     actionCard: {
       width: 110,
       height: 110,

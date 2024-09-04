@@ -18,9 +18,12 @@ import Finger from '../ScreenFingerprint/Assets/Finger';
 import MyCircleSvg from '../ScreenFingerprint/Assets/MyCircleSvg';
 import PasswordWhitebg from '../../assets/PasswordWhitebg';
 import AnimatedCheckbox from 'react-native-checkbox-reanimated';
+import { RegisterScreenProps } from '../../utils/types/interface';
+import { useDispatch } from 'react-redux';
+import { signupUser } from '../../utils/firebaseAuth';
 
 
-const ScreenSignup = () => {
+const ScreenSignup:React.FC <RegisterScreenProps> = ({ navigation }) => {
   const {
     control,
     handleSubmit,
@@ -28,6 +31,13 @@ const ScreenSignup = () => {
   } = useForm<SignUpFormData>({
     resolver: yupResolver(signUpSchema),
   });
+
+  const dispatch = useDispatch();
+
+  const onSubmit = (data: SignUpFormData) => {
+    signupUser(data, dispatch);
+  };
+
   const [agreeTerms, setAgreeTerms] = useState(false);
 
   const handleCheckboxPress = () => {
@@ -148,12 +158,12 @@ const ScreenSignup = () => {
           </View>
 
           <View style={styles.buttoncontainer}>
-            <TouchableOpacity style={styles.button}>
-              <Text style={styles.buttonText}>Login</Text>
+            <TouchableOpacity style={styles.button} onPress={handleSubmit(onSubmit)}>
+              <Text style={styles.buttonText}>SignUp</Text>
             </TouchableOpacity>
           </View>
 
-          <Text style={styles.forget}>Already have an account? <Text style={{color: 'white'}}>Login</Text></Text>
+          <Text style={styles.forget}>Already have an account? <Text style={{color: 'white'}}  onPress={() => navigation.navigate('ScreenLogin')} >Login</Text></Text>
         </View>
       </ScrollView>
     </KeyboardAvoidingView>

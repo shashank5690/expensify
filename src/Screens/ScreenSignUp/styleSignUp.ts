@@ -54,7 +54,7 @@ export const styles = StyleSheet.create({
         borderRadius: 10,
     },
     buttonText: {
-        fontFamily: 'Sofia Pro',
+        fontFamily: 'Sofia Pro Bold',
         fontSize: 20,
         fontWeight: '400',
         lineHeight: 59.3,
