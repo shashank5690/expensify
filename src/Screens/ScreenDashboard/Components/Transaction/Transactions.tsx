@@ -36,8 +36,8 @@ const Transactions: React.FC<TransactionsProps> = () => {
   return (
     <View style={styles.transactionsContainer}>
       <View style={styles.transactionsHeader}>
-        <Text style={styles.transactionsHeading}>Latest Transactions</Text>
-        <Text style={styles.viewAllText}>View All</Text>
+        <Text style={styles.transactionsHeading}>Transactions</Text>
+        {/* <Text style={styles.viewAllText}>View All</Text> */}
       </View>
       <FlatList
         data={transactions}
