@@ -1,10 +1,11 @@
 import * as React from "react";
-import { Button, Text, TextInput, TouchableOpacity, View, StyleSheet } from "react-native";
+import { Button, Text, TextInput, TouchableOpacity, View, StyleSheet, StatusBar } from "react-native";
 import SegmentedControl from "@react-native-segmented-control/segmented-control";
 import { CategoryButtonProps } from "./utils/types";
-import {styles} from "./addTransaction";
+import { styles } from "./addTransaction";
 import { categories } from "./utils/types";
-
+import Bell from "../../assets/Bell";
+import Profile from "../../assets/Profile";
 
 export default function AddTransaction() {
   const [isAddingTransaction, setIsAddingTransaction] = React.useState(false);
@@ -15,54 +16,73 @@ export default function AddTransaction() {
   const categoryType = currentTab === 0 ? "Expense" : "Income";
   const currentCategories = categories[categoryType];
 
-
-
   return (
+    
     <View style={styles.container}>
+     <StatusBar translucent backgroundColor="transparent" />
+      {/* Header Section */}
+      <View style={styles.header}>
+        <Profile />
+        <Text style={styles.headerText}>Transactions</Text>
+        <Bell />
+      </View>
+      <View>
       
-        <View>
-          <View style={styles.card}>
-            <Text>Enter Amount</Text>
-            <TextInput
-              placeholder="$Amount"
-              style={styles.inputAmount}
-              keyboardType="numeric"
-              onChangeText={(text) => setAmount(text.replace(/[^0-9.]/g, ""))}
-              value={amount}
+
+        <View style={styles.card}>
+        <Text style={styles.EnterAmount}>Enter Amount</Text>
+        <TextInput
+          placeholder="₹ Amount"
+          style={styles.inputAmount}
+          keyboardType="numeric"
+          onChangeText={(text) => setAmount(text.replace(/[^0-9.]/g, ""))}
+          value={amount}
+          placeholderTextColor="#8E949A" 
+        />
+          <TextInput
+            placeholder="Description for Product"
+            style={styles.inputDescription}
+            onChangeText={setDescription}
+            value={description}
+            placeholderTextColor="#8E949A" 
+          />
+          <Text style={styles.entryTypeText}>Select an Transaction type</Text>
+          <SegmentedControl
+            values={["Expense", "Income"]}
+            selectedIndex={currentTab}
+            onChange={(event) => setCurrentTab(event.nativeEvent.selectedSegmentIndex)}
+            style={styles.segmentedControl}
+          />
+          {currentCategories.map((cat, index) => (
+            <CategoryButton
+              key={index}
+              title={cat}
+              isSelected={typeSelected === cat}
+              setTypeSelected={setTypeSelected}
             />
-            <TextInput
-              placeholder="Description"
-              style={styles.inputDescription}
-              onChangeText={setDescription}
-              value={description}
-            />
-            <Text style={styles.entryTypeText}>Select a entry type</Text>
-            <SegmentedControl
-              values={["Expense", "Income"]}
-              selectedIndex={currentTab}
-              onChange={(event) => setCurrentTab(event.nativeEvent.selectedSegmentIndex)}
-              style={styles.segmentedControl}
-            />
-            {currentCategories.map((cat, index) => (
-              <CategoryButton
-                key={index}
-                title={cat}
-                isSelected={typeSelected === cat}
-                setTypeSelected={setTypeSelected}
-              />
-            ))}
-          </View>
-          <View style={styles.buttonContainer}>
-            <Button title="Cancel" color="red" onPress={() => setIsAddingTransaction(false)} />
-            <Button title="Save"  />
-          </View>
+          ))}
         </View>
-     
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity 
+            style={[styles.button, styles.saveButton]} 
+            onPress={() => {/* Handle save action */}}
+          >
+            <Text style={styles.buttonText}>Save</Text>
+          </TouchableOpacity>
+          
+          <TouchableOpacity 
+            style={[styles.button, styles.cancelButton]} 
+            onPress={() => setIsAddingTransaction(false)}
+          >
+            <Text style={styles.buttonText}>Cancel</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
     </View>
   );
-}
+};
 
-function CategoryButton({ title, isSelected, setTypeSelected }:CategoryButtonProps) {
+function CategoryButton({ title, isSelected, setTypeSelected }: CategoryButtonProps) {
   return (
     <TouchableOpacity
       onPress={() => setTypeSelected(title)}
