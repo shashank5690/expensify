@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
@@ -39,6 +40,7 @@ const App = () => (
       <Tab.Screen name="Scanner" component={Scanner} options={{ headerShown: false }} />
     </Tab.Navigator>
   </NavigationContainer>
+
 );
 
 export default App;

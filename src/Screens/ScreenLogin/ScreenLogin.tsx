@@ -34,7 +34,7 @@ const ScreenLogin = () => {
               render={({ field: { onChange, value } }) => (
                 <TextInput
                   style={styles.input}
-                  placeholder="User id"
+                  placeholder="Username"
                   placeholderTextColor="#A4A9AE"
                   onChangeText={onChange}
                   value={value}
