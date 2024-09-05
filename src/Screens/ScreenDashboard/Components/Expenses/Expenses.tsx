@@ -1,16 +1,7 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
-import Salary from '../../assets/Salary';
-import Medical from '../../assets/Medical';
-import Rent from '../../assets/Rent';
-import Clothing from '../../assets/Clothing';
-import Electricity from '../../assets/Electricity';
-import Personal from '../../assets/Personal';
-import Food from '../../assets/Food';
-import Household from '../../assets/Household';
-import Utilities from '../../assets/Utilities';
-import Insurance from '../../assets/Insurance';
-import styles from './StylesExpense';
+import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons'; 
+import styles from './StylesExpense'; 
 
 interface ExpensesProps {
   selectedExpense: string | null;
@@ -20,40 +11,53 @@ interface ExpensesProps {
 const Expenses: React.FC<ExpensesProps> = ({ selectedExpense, onSelectExpense }) => {
   const isSelected = (expense: string) => selectedExpense === expense;
 
+  const expenseIcons: Record<string, string> = {
+    'Utilities': 'bulb', 
+    'Electronics': 'phone-portrait', 
+    'Food': 'restaurant', 
+    'Rent': 'home', 
+    'Household': 'home-outline', 
+    'Transportation': 'car', 
+    'Medical': 'medkit', 
+    'Bonus': 'gift',
+    'Consulting': 'briefcase', 
+    'Part-time': 'time', 
+    'Sales': 'cart', 
+    'Freelance': 'pencil', 
+    'Salary': 'cash', 
+    'Investments': 'stats-chart', 
+  };
+
   return (
     <>
-      <Text style={styles.expensesText}>Expenses</Text>
+      <Text style={styles.expensesText}>Categories</Text>
       <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.expensesContainer}>
-        {[
-          { label: 'Salary', Icon: Salary },
-          { label: 'Medical', Icon: Medical },
-          { label: 'Rent', Icon: Rent },
-          { label: 'Clothing', Icon: Clothing },
-          { label: 'Electricity', Icon: Electricity },
-          { label: 'Personal', Icon: Personal },
-          { label: 'Food', Icon: Food },
-          { label: 'Household', Icon: Household },
-          { label: 'Utilities', Icon: Utilities },
-          { label: 'Insurance', Icon: Insurance },
-        ].map(({ label, Icon }) => (
+        {Object.entries(expenseIcons).map(([label, iconName]) => (
           <View key={label} style={styles.expenseBlock}>
             <TouchableOpacity
               style={[
                 styles.expenseCard,
-                isSelected(label) && { backgroundColor: '#bfc0c0' },
+                isSelected(label) && { backgroundColor: '#456EFE' },
               ]}
               onPress={() => onSelectExpense(label)}
             >
-              <Icon />
+              <Ionicons
+                name={iconName}
+                size={25} 
+                color={isSelected(label) ? '#FFF' : '#456EFE'} 
+              />
             </TouchableOpacity>
-            <Text style={styles.expenseText}>{label}</Text>
+            <Text style={[
+              styles.expenseText,
+              isSelected(label) && { color: '#456EFE' }, 
+            ]}>
+              {label}
+            </Text>
           </View>
         ))}
       </ScrollView>
     </>
   );
 };
-
-
 
 export default Expenses;
