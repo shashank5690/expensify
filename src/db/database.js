@@ -36,6 +36,8 @@ export const initializeDatabase = async () => {
       const categoriesData = [
         ['Utilities', 'Expense'],
         ['Electronics', 'Expense'],
+        ['temp1', 'Expense'],
+        ['temp2', 'Expense'],
         ['Dining Out', 'Expense'],
         ['Breakfast Supplies', 'Expense'],
         ['Household Items', 'Expense'],

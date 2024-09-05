@@ -4,7 +4,7 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from '../../Res
 export const styles = StyleSheet.create({
   container: {
     height: hp('100%'),
-    backgroundColor: '#F9F9F9',
+    backgroundColor: '#FFFFFF',
   },
   header: {
     flexDirection: 'row',
@@ -14,8 +14,14 @@ export const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     marginTop: hp('3%'),
   },
-  categoryList: {
-   // paddingVertical: hp('0%'),
+  cat: {
+    maxHeight: hp('34%'),
+    borderWidth: 1,
+    borderColor: '#D0D0D0',
+    borderRadius: 12,
+    paddingVertical: hp('1%'),
+    paddingHorizontal: wp('3%'),
+    backgroundColor: '#F5F5F5',
   },
   headerText: {
     fontSize: wp('6%'),
@@ -28,9 +34,9 @@ export const styles = StyleSheet.create({
     paddingTop:hp('1%'),
     backgroundColor: '#FFFFFF',
     marginBottom: hp('2%'),
-    elevation: 3,
-    borderColor: '#E0E0E0',
-    borderWidth: 1,
+    //elevation: 3,
+    //borderColor: '#E0E0E0',
+   // borderWidth: 1,
   },
   EnterAmount: {
     fontSize: wp('5%'),
@@ -53,7 +59,8 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     top: hp('0.5%'),
     paddingVertical: hp('2%'),
-    paddingHorizontal: wp('5%'),
+   // paddingHorizontal: wp('5%'),
+   marginHorizontal:wp('5%'),
     borderColor: '#D0D0D0',
     elevation: 3,
     justifyContent: 'space-between',
@@ -92,10 +99,10 @@ export const styles = StyleSheet.create({
     borderRadius: 12,
     marginBottom: hp('1.5%'),
     fontFamily: 'Sofia Pro Bold',
-    elevation: 1, 
   },
   selectedCategoryButton: {
-    backgroundColor: 'gray',
+    backgroundColor: "#007BFF20" ,
+    
   },
   categoryButtonText: {
     fontFamily: 'Sofia Pro Bold',
@@ -103,6 +110,7 @@ export const styles = StyleSheet.create({
   },
   selectedCategoryButtonText: {
     fontFamily: 'Sofia Pro Bold',
+    color:'#456EFE',
   },
   buttonContainer: {
     flexDirection: 'row',
@@ -121,7 +129,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#D90429',
   },
   saveButton: {
-    backgroundColor: '#456EFE',
+    backgroundColor: '#466EFA',
   },
   buttonText: {
     color: 'white',

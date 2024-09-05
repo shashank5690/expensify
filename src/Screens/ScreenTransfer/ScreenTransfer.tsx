@@ -5,14 +5,25 @@ import TopNavbar from './Assets/TopNavbar';
 import Notification from './Assets/Notification';
 import Rectangle from './Assets/Rectangle';
 import Card from './Assets/Card';
+import { useNavigation } from '@react-navigation/native';
+import { ScreenTransactionProps } from './utils/types';
+import { RootState } from '../../utils/redux/store';
+import { useSelector } from 'react-redux';
 
-const ScreenTransfer = () => {
-    const amount = 250.00;
+const ScreenTransfer:React.FC=() => {
+  const navigation = useNavigation<ScreenTransactionProps>(); 
+  const amount = parseFloat(useSelector((state: RootState) => state.transaction.amount));
+   
+  const handleBack=()=>{
+   navigation.navigate('BottomNavigation');
+  }
 
   return (
     <View style={styles.container}>
       <View style={styles.navbar}>
+        <TouchableOpacity onPress={handleBack}>
         <TopNavbar />
+        </TouchableOpacity>
         <Text style={styles.text}>Confirmation</Text>
         <Notification />
       </View>
@@ -32,7 +43,7 @@ const ScreenTransfer = () => {
           <Rectangle />
         </View>
         <View style={styles.div}>
-          <Text style={styles.name}>Shashank Mehra</Text>
+          <Text style={styles.name}>Shashank Rohit</Text>
           <Text style={styles.number}>1******6103</Text>
           <TouchableOpacity>
             <Image
