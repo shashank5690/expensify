@@ -11,12 +11,15 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { setUser } from '../Screens/ScreenLogin/redux/authSlice';
 import auth from '@react-native-firebase/auth';
 import BottomNavigation from './BottomNavigation';
+import Splash from '../Screens/ScreenSplash/SplashScreen';
 
 const AuthStack = createStackNavigator<AuthStackParamList>();
 
 const AppNavigator: React.FC = () => {
   const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
   const dispatch = useDispatch();
+  const [isSplashVisible, setIsSplashVisible] = useState(true);
+
 
 
   useEffect(() => {
@@ -37,11 +40,19 @@ const AppNavigator: React.FC = () => {
         }
       } catch (error) {
         dispatch(setUser(null));
+      }finally {
+        setTimeout(() => {
+          setIsSplashVisible(false);
+        }, 1000); 
       }
     };
 
     checkToken();
   }, [dispatch]);
+
+  if (isSplashVisible) {
+    return <Splash />;
+  }
 
 
 
