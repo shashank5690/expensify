@@ -24,6 +24,18 @@ const styles = StyleSheet.create({
       flex: 1,
       padding: 16,
     },
+    cardScrollView: {
+      marginBottom: 16,
+    },
+    cardScrollViewContent: {
+      flexDirection: 'row',
+      alignItems: 'center',
+    },
+    cardWrapper: {
+      width: 355, 
+      marginRight: 12, 
+      backgroundColor: '#fff',
+    },
     quickActionsText: {
       fontSize: 20,
       color: '#000',

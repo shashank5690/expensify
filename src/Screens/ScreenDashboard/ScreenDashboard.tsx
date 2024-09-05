@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, StatusBar, TouchableOpacity, FlatList } from 'react-native';
+import { View, Text, StyleSheet, StatusBar, TouchableOpacity, FlatList, ScrollView } from 'react-native';
 import Bell from './assets/Bell';
 import Profile from './assets/Profile';
-import Card from './Components/Card/Card';
+import Card from './Components/CardWallet/CardWallet';
 import Month from './assets/Month';
 import Week from './assets/Week';
 import Day from './assets/Day';
@@ -13,6 +13,8 @@ import { DashboardProps } from '../../utils/types/interface';
 import { useDispatch } from 'react-redux';
 import { logoutUser } from '../../utils/firebaseAuth';
 import Logout from './assets/Logout';
+import CardIncome from './Components/CardIncome/CardIncome';
+import CardExpense from './Components/CardExpense/CardExpense';
 
 const Dashboard: React.FC<DashboardProps> = () => {
   const dispatch = useDispatch();
@@ -29,7 +31,22 @@ const Dashboard: React.FC<DashboardProps> = () => {
   const renderContent = () => {
     return (
       <View style={styles.content}>
-        <Card />
+             <ScrollView 
+        horizontal 
+        showsHorizontalScrollIndicator={false} 
+        style={styles.cardScrollView}
+        contentContainerStyle={styles.cardScrollViewContent}
+      >
+        <View style={styles.cardWrapper}>
+          <Card />
+        </View>
+        <View style={styles.cardWrapper}>
+          <CardIncome />
+        </View>
+        <View style={styles.cardWrapper}>
+          <CardExpense />
+        </View>
+      </ScrollView>
 
         <Text style={styles.quickActionsText}>Quick Actions</Text>
         <View style={styles.actionsContainer}>

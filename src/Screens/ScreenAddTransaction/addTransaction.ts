@@ -53,7 +53,7 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#D0D0D0',
   },
-  datePickerButton: {
+ datePickerButton: {
     backgroundColor: '#FFFFFF',
     borderRadius: 12,
     alignItems: 'center',
