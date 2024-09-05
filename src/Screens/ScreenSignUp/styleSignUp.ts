@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { Fonts } from '../../utils/fonts';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from '../../Responsive/Responsive'; 
 
 export const styles = StyleSheet.create({
     container: {
@@ -8,106 +9,107 @@ export const styles = StyleSheet.create({
     },
     scrollView: {
         flexGrow: 1,
-        justifyContent: 'center',  
+        justifyContent: 'center',
     },
     innerContainer: {
-        alignItems: 'center',   
-        top: 50,     
+        alignItems: 'center',
+        top: hp('8.5%'), 
     },
     text: {
-        fontSize: 30,
-        lineHeight: 43.95,
-        fontFamily:'Sofia Pro Bold',
+        fontSize: wp('8%'), 
+        lineHeight: wp('10%'), 
+        fontFamily: 'Sofia Pro Bold',
         color: '#FFFFFF',
-        marginBottom: 30,            
+        marginBottom: hp('4%'), 
     },
     stylefield: {
-        width: 316,
-        height: 63,
+        width: wp('80%'), 
+        height: hp('7%'), 
         borderRadius: 10,
         backgroundColor: '#FFFFFF',
-        marginBottom: 20,            
+        marginBottom: hp('2%'), 
     },
-    stylefield1:{
-        width:232,
-        height: 63,            
+    stylefield1: {
+        width: wp('60%'),
+        height: hp('7%'), 
         borderRadius: 10,
         backgroundColor: '#FFFFFF',
-        right:8
+        right: 7,
     },
     input: {
         color: '#A4A9AE',
-        fontSize: 16,
-        fontFamily:Fonts.SofiaPro,
-        paddingTop: 20,
-        paddingLeft: 20,
+        fontSize: wp('4%'), 
+        fontFamily: Fonts.SofiaPro,
+        paddingTop: hp('2%'), 
+        paddingLeft: wp('5%'), 
     },
     buttoncontainer: {
-        width: 316,
-        height: 63,
+        width: wp('80%'), 
+        height: hp('8%'),
         borderRadius: 10,
         backgroundColor: '#456EFE',
         justifyContent: 'center',
-        bottom:10,            
+        bottom: 10,
     },
     button: {
         borderRadius: 10,
     },
     buttonText: {
         fontFamily: 'Sofia Pro Bold',
-        fontSize: 20,
+        fontSize: wp('5%'), 
         fontWeight: '400',
-        lineHeight: 59.3,
+        lineHeight: hp('6%'), 
         textAlign: 'center',
         color: '#FFFFFF',
     },
     forget: {
-        fontSize: 18,
+        fontSize: wp('4.5%'),
         color: '#8E949A',
         fontFamily: 'Sofia Pro',
-        marginBottom: 40,           
+        marginBottom: hp('5%'), 
         textAlign: 'center',
-        top: 20,
+        top: hp('2%'), 
     },
-
-        termsContainer: {
-          flexDirection: 'row',
-          alignItems: 'center',
-        //   marginBottom: 20,
-          right:50,
-          
-        },
-        checkbox: {
-            width: 64,
-            height: 64,
-          borderRadius: 4,
-        //   marginRight: 10, 
-        },
-        termsText: {
-          fontFamily: 'Sofia Pro',
-          fontSize: 16,
-          fontWeight: '500',
-          lineHeight: 23.44,
-          color: '#FFFFFF',
-          bottom:15,
-        },
+    termsContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        right: 50,
+    },
+    checkbox: {
+        width: wp('15%'), 
+        height: hp('8%'),
+        borderRadius: 4,
+    },
+    termsText: {
+        fontFamily: 'Sofia Pro',
+        fontSize: wp('4%'), 
+        fontWeight: '500',
+        lineHeight: hp('5%'), 
+        color: '#FFFFFF',
+        bottom: 15,
+    },
     finger: {
-     width: 66.36,
-    height: 63,
-    borderTopRightRadius: 10,
-    borderBottomRightRadius: 10,
-    overflow: 'hidden', 
-    left:10   
+        width: wp('17%'),
+        height: hp('10%'),
+        borderTopRightRadius: 10,
+        borderBottomRightRadius: 10,
+        overflow: 'hidden',
+        left: 10,
+        top: hp('1.5%')
     },
     MyCircleSvg: {
-        top: -190,
-        left: 245,
+        top: hp('-20%'), 
+        left: wp('60%'), 
         position: 'absolute',
     },
-    passwordstyle:{
-         flexDirection:'row',
-         alignItems:'center',
-         marginBottom: 20,            
-
+    passwordstyle: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: hp('2%'), 
+    },
+    error:{
+        color:'red',
+        paddingTop:hp('0.6%'),
+        paddingLeft:wp('0.5%')
     }
 });

@@ -16,7 +16,7 @@ import {signUpSchema} from './utils/SignUpValidation';
 import {TextInput} from 'react-native';
 import Finger from '../ScreenFingerprint/Assets/Finger';
 import MyCircleSvg from '../ScreenFingerprint/Assets/MyCircleSvg';
-import PasswordWhitebg from '../../assets/PasswordWhitebg';
+import PasswordWhitebg from '../../assets/Icons/PasswordWhitebg';
 import AnimatedCheckbox from 'react-native-checkbox-reanimated';
 import { RegisterScreenProps } from '../../utils/types/interface';
 import { useDispatch } from 'react-redux';
@@ -45,9 +45,7 @@ const ScreenSignup:React.FC <RegisterScreenProps> = ({ navigation }) => {
   };
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === 'android' ? 'height' : 'padding'}
-      style={styles.container}>
+    <KeyboardAvoidingView   style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollView}>
         <View style={styles.innerContainer}>
           <View style={styles.MyCircleSvg}>
@@ -69,7 +67,7 @@ const ScreenSignup:React.FC <RegisterScreenProps> = ({ navigation }) => {
                 />
               )}
             />
-            {errors.username && <Text>{errors.username.message}</Text>}
+            {errors.username && <Text style={styles.error}>{errors.username.message}</Text>}
           </View>
 
           <View style={styles.stylefield}>
@@ -86,7 +84,7 @@ const ScreenSignup:React.FC <RegisterScreenProps> = ({ navigation }) => {
                 />
               )}
             />
-            {errors.email && <Text>{errors.email.message}</Text>}
+            {errors.email && <Text style={styles.error}>{errors.email.message}</Text>}
           </View>
 
           <View style={styles.stylefield}>
@@ -103,7 +101,7 @@ const ScreenSignup:React.FC <RegisterScreenProps> = ({ navigation }) => {
                 />
               )}
             />
-            {errors.mobilenumber && <Text>{errors.mobilenumber.message}</Text>}
+            {errors.mobilenumber && <Text style={styles.error}>{errors.mobilenumber.message}</Text>}
           </View>
 
           <View style={styles.stylefield}>
@@ -120,7 +118,7 @@ const ScreenSignup:React.FC <RegisterScreenProps> = ({ navigation }) => {
                 />
               )}
             />
-            {errors.mobilenumber && <Text>{errors.mobilenumber.message}</Text>}
+            {errors.cnic && <Text style={styles.error}>{errors.cnic.message}</Text>}
           </View>
           <View style={styles.passwordstyle}>
             <View style={styles.stylefield1}>
@@ -138,7 +136,7 @@ const ScreenSignup:React.FC <RegisterScreenProps> = ({ navigation }) => {
                   />
                 )}
               />
-              {errors.password && <Text>{errors.password.message}</Text>}
+              {errors.password && <Text style={styles.error}>{errors.password.message}</Text>}
             </View>
             <View style={styles.finger}>
             <PasswordWhitebg/>
