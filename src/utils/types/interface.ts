@@ -5,12 +5,16 @@ export type AuthStackParamList = {
     OnboardScreen: undefined;
     ScreenLogin: undefined;
     ScreenSignup: undefined;
+    
 };
 
 export type AppStackParamList = {
     Dashboard: undefined;
     AddTransaction: undefined;
     Scanner:undefined;
+    ScreenTransfer: undefined;
+    ScreenTransferSuccess: undefined;
+    BottomNavigation: undefined;
 };
 
 

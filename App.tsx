@@ -1,28 +1,11 @@
-// import React, { useEffect } from 'react';
-// import { Provider } from 'react-redux';
-// import AppNavigator from './src/Navigation/AppNavigator'; 
-// import store from './src/utils/redux/store'; 
-// import { View } from 'react-native';
-
-// const App = () => {
-
-
-//   return (
-//     <Provider store={store}>
-//       <AppNavigator />
-//     </Provider>
-//   );
-// };
-
-
-
-// export default App;
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, View, Text } from 'react-native';
 import { initializeDatabase } from './src/db/database';
 import AppNavigator from './src/Navigation/AppNavigator'; 
 import store from './src/utils/redux/store'; 
 import { Provider } from 'react-redux';
+import ScreenTransfer from './src/Screens/ScreenTransfer/ScreenTransfer';
+import ScreenTransferSuccess from './src/Screens/ScreenTransferSuccess/ScreenTransferSuccess';
 
 export default function App() {
   const [dbInitialized, setDbInitialized] = useState(false);
@@ -45,6 +28,8 @@ export default function App() {
   return (
     <Provider store={store}>
       <AppNavigator />
+      {/* <ScreenTransfer/> */}
+      {/* <ScreenTransferSuccess/> */}
     </Provider>
   );
 }

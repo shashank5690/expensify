@@ -7,9 +7,13 @@ import Bell from "../../assets/Icons/Bell";
 import Profile from "../../assets/Icons/Profile";
 import { styles } from "./addTransaction";
 import { CategoryButtonProps } from "./utils/types";
+import { ScreenTransferProps } from "./utils/types";
+import { useNavigation } from '@react-navigation/native';
+import { setAmountRedux } from "./redux/transactionSlice";
+import { useDispatch } from "react-redux";
 
 export default function AddTransaction() {
-  const [isAddingTransaction, setIsAddingTransaction] = useState(false);
+  const navigation = useNavigation<ScreenTransferProps>();
   const [currentTab, setCurrentTab] = useState(0);
   const [typeSelected, setTypeSelected] = useState(""); 
   const [selectedCategoryId, setSelectedCategoryId] = useState<number |null>(null);  
@@ -18,6 +22,9 @@ export default function AddTransaction() {
   const [date, setDate] = useState(new Date());
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [categories, setCategories] = useState<Category[]>([]);
+
+  const dispatch = useDispatch();
+
 
   interface Category {
     id: number;
@@ -29,6 +36,8 @@ export default function AddTransaction() {
     fetchCategories();
   }, [currentTab]);
 
+
+  
   const fetchCategories = async () => {
     const categoryType = currentTab === 0 ? "Expense" : "Income";
     try {
@@ -44,23 +53,35 @@ export default function AddTransaction() {
     setShowDatePicker(false);
     setDate(currentDate);
   };
+  
+  const handleCancelTransaction=()=>{
+    setAmount("");
+      setDescription("");
+      setTypeSelected("");
+      setSelectedCategoryId(null);
+  }
 
   const handleSaveTransaction = async () => {
+
     if (!selectedCategoryId || !amount || !description) {
       console.error("Please fill all the fields");
       return;
     }
+
     
     const transactionType = currentTab === 0 ? 'Expense' : 'Income';
     try {
       await addTransaction(selectedCategoryId, parseFloat(amount), Math.floor(date.getTime() / 1000), description, transactionType);
       console.log('Transaction saved successfully');
      
+      dispatch(setAmountRedux(amount));
+
       setAmount("");
       setDescription("");
       setTypeSelected("");
       setSelectedCategoryId(null);
-      setIsAddingTransaction(false);
+      //setIsAddingTransaction(false);
+      navigation.navigate('ScreenTransfer');
     } catch (error) {
       console.error('Failed to save transaction', error);
     }
@@ -113,10 +134,14 @@ export default function AddTransaction() {
               }}
             />
           )}
-          contentContainerStyle={styles.categoryList} 
+          //contentContainerStyle={styles.categoryList} 
+          style={styles.cat}
+          showsVerticalScrollIndicator={false}
         />
 
-        <TouchableOpacity
+        
+      </View>
+      <TouchableOpacity
           onPress={() => setShowDatePicker(true)}
           style={styles.datePickerButton}
         >
@@ -144,12 +169,11 @@ export default function AddTransaction() {
 
           <TouchableOpacity
             style={[styles.button, styles.cancelButton]}
-            onPress={() => setIsAddingTransaction(false)}
+            onPress={() => handleCancelTransaction}
           >
             <Text style={styles.buttonText}>Cancel</Text>
           </TouchableOpacity>
         </View>
-      </View>
     </View>
   );
 }
