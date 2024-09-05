@@ -32,7 +32,7 @@ const AppNavigator: React.FC = () => {
             };
             dispatch(setUser(user));
           }
-        } else {
+        } else { 
           dispatch(setUser(null));
         }
       } catch (error) {
