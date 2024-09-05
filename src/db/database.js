@@ -29,33 +29,41 @@ export const initializeDatabase = async () => {
       );
     `);
 
-    const categoriesData = [
-      ['Utilities', 'Expense'],
-      ['Electronics', 'Expense'],
-      ['Dining Out', 'Expense'],
-      ['Breakfast Supplies', 'Expense'],
-      ['Household Items', 'Expense'],
-      ['Bonus', 'Income'],
-      ['Consulting Work', 'Income'],
-      ['Part-time Job', 'Income'],
-      ['Online Sales', 'Income'],
-      ['Freelance Writing', 'Income'],
-    ];
+    const [result] = await db.executeSql('SELECT COUNT(*) as count FROM Categories');
+    const count = result.rows.item(0).count;
 
-    for (const [name, type] of categoriesData) {
-      await db.executeSql(
-        'INSERT INTO Categories (name, type) VALUES (?, ?);',
-        [name, type]
-      );
+    if (count === 0) {
+      const categoriesData = [
+        ['Utilities', 'Expense'],
+        ['Electronics', 'Expense'],
+        ['Dining Out', 'Expense'],
+        ['Breakfast Supplies', 'Expense'],
+        ['Household Items', 'Expense'],
+        ['Bonus', 'Income'],
+        ['Consulting Work', 'Income'],
+        ['Part-time Job', 'Income'],
+        ['Online Sales', 'Income'],
+        ['Freelance Writing', 'Income'],
+      ];
+
+      for (const [name, type] of categoriesData) {
+        await db.executeSql(
+          'INSERT INTO Categories (name, type) VALUES (?, ?);',
+          [name, type]
+        );
+      }
+      // console.log('Categories inserted.');
+    } else {
+      // console.log('Categories already exist, skipping insertion.');
     }
 
-    console.log('Database initialized successfully.');
     return db;
   } catch (error) {
     console.error('Failed to initialize the database:', error);
     throw error;
   }
 };
+
 
 export const getCategories = async (type) => {
   const db = await SQLite.openDatabase({ name: dbName, location: 'default' });
@@ -68,6 +76,22 @@ export const getCategories = async (type) => {
     return categories;
   } catch (error) {
     console.error('Failed to fetch categories:', error);
+    throw error;
+  }
+};
+
+export const addTransaction = async (categoryId, amount, date, description, type) => {
+  const db = await SQLite.openDatabase({ name: dbName, location: 'default' });
+  
+  try {
+    await db.executeSql(
+      `INSERT INTO Transactions (category_id, amount, date, description, type) 
+       VALUES (?, ?, ?, ?, ?);`,
+      [categoryId, amount, date, description, type]
+    );
+    console.log('Transaction added successfully');
+  } catch (error) {
+    console.error('Failed to add transaction:', error);
     throw error;
   }
 };
