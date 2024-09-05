@@ -47,6 +47,7 @@ export const styles = StyleSheet.create({
     borderColor: '#D0D0D0',
   },
   datePickerButton: {
+
     backgroundColor: '#FFFFFF', 
     borderRadius: 12,
     alignItems: 'center',
@@ -56,6 +57,7 @@ export const styles = StyleSheet.create({
     borderColor: '#D0D0D0',
     elevation: 3, 
     justifyContent: 'space-between', 
+
   },
   datePickerButtonText: {
     color: '#333333',
@@ -91,7 +93,9 @@ export const styles = StyleSheet.create({
     borderRadius: 12,
     marginBottom: 10,
     fontFamily: 'Sofia Pro Bold',
+
     elevation: 1, 
+
   },
   
   selectedCategoryButton: {
