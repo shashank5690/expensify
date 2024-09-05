@@ -1,24 +1,21 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 
-
-
-
-export const  styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   container: {
-    // margin: 15,
     height: '100%',
-    backgroundColor: '#FFFFFF',
-
+    backgroundColor: '#F9F9F9', 
   },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     padding: 16,
-    backgroundColor: '#fff',
+    backgroundColor: '#FFFFFF',
     marginTop: 30,
-    fontFamily: 'Sofia Pro',
-
+  },
+  categoryList: {
+    paddingVertical: 10,
+     //height:'40%'
   },
   headerText: {
     fontSize: 24,
@@ -27,103 +24,114 @@ export const  styles = StyleSheet.create({
     fontFamily: 'Sofia Pro Bold',
   },
   card: {
-    padding: 15,
-    borderRadius: 10,
-    // backgroundColor: 'gray',
+    padding: 20,
+    backgroundColor: '#FFFFFF',
     marginBottom: 15,
+    elevation: 3, 
+    borderColor: '#E0E0E0',
+    borderWidth: 1, 
   },
   EnterAmount: {
     fontSize: 20,
-    color: '#000',
-    marginBottom: 12,
-    marginTop: 12,
+    color: '#333333',
     fontFamily: 'Sofia Pro Bold',
   },
   inputAmount: {
     fontSize: 32,
     fontFamily: 'Sofia Pro Bold',
     marginBottom: 15,
-    backgroundColor: '#00000020', 
-    borderRadius: 12, 
-    padding: 10, 
-    color: '#333', 
+    borderRadius: 12,
+    padding: 10,
+    color: '#333',
+    borderWidth: 1,
+    borderColor: '#D0D0D0',
   },
   datePickerButton: {
-    padding: 20,
-    marginVertical: -8,
-    backgroundColor: '#ddd',
+
+    backgroundColor: '#FFFFFF', 
     borderRadius: 12,
     alignItems: 'center',
-    top:10
+    top: 10,
+    paddingVertical: 15, 
+    paddingHorizontal: 20,
+    borderColor: '#D0D0D0',
+    elevation: 3, 
+    justifyContent: 'space-between', 
+
   },
   datePickerButtonText: {
-    color: '#456EFE',
+    color: '#333333',
+    fontFamily: 'Sofia Pro Bold',
+    fontSize: 16,
   },
   inputDescription: {
     marginBottom: 15,
     fontSize: 18,
     fontFamily: 'Sofia Pro Bold',
-    backgroundColor: '#00000020',
-    borderRadius: 12, 
-    padding: 10, 
-    color: '#333', 
+    borderRadius: 12,
+    padding: 10,
+    color: '#333',
+    borderWidth: 1,
+    borderColor: '#D0D0D0', 
   },
   entryTypeText: {
     marginTop: 10,
     marginBottom: 10,
     fontSize: 16,
     fontFamily: 'Sofia Pro Bold',
+    color: '#555', 
   },
-    segmentedControl: {
+  segmentedControl: {
     marginBottom: 15,
     fontFamily: 'Sofia Pro Bold',
   },
   categoryButton: {
-    height: 40,
+    height: 50,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#00000020',
+     backgroundColor: '#E0E0E0',
     borderRadius: 12,
-    marginBottom: 6,
+    marginBottom: 10,
     fontFamily: 'Sofia Pro Bold',
-    bottom:10
+
+    elevation: 1, 
+
   },
+  
   selectedCategoryButton: {
-    backgroundColor: '#007BFF20',
+      backgroundColor: 'gray',
+     
   },
   categoryButtonText: {
     fontFamily: 'Sofia Pro Bold',
     color: '#000000',
   },
   selectedCategoryButtonText: {
-    color: '#007BFF',
     fontFamily: 'Sofia Pro Bold',
   },
   buttonContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between', 
-    marginVertical: 20, 
-    position:'relative',
-    top:60
+    justifyContent: 'space-between',
+    marginVertical: 30,
+  
   },
   button: {
-    flex: 1, 
+    flex: 1,
     alignItems: 'center',
-    justifyContent: 'center', 
+    justifyContent: 'center',
     height: 50,
-    borderRadius: 12, 
-    marginHorizontal: 12, 
+    borderRadius: 12,
+    marginHorizontal: 6, 
   },
   cancelButton: {
-    backgroundColor: '#D90429', 
+    backgroundColor: '#D90429',
   },
   saveButton: {
-    backgroundColor: '#456EFE', 
+    backgroundColor: '#456EFE',
   },
   buttonText: {
     color: 'white',
     fontSize: 18,
     fontFamily: 'Sofia Pro Bold',
-
   },
 });

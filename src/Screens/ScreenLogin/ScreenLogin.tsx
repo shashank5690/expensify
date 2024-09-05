@@ -24,7 +24,6 @@ const ScreenLogin: React.FC<LoginScreenProps> = ({ navigation }) => {
 
   return (
     <KeyboardAvoidingView
-      behavior={Platform.OS === 'android' ? 'height' : 'padding'}
       style={styles.container}
     >
       <ScrollView contentContainerStyle={styles.scrollView}>
@@ -49,7 +48,7 @@ const ScreenLogin: React.FC<LoginScreenProps> = ({ navigation }) => {
                 />
               )}
             />
-            {errors.email && <Text>{errors.email.message}</Text>}
+            {errors.email && <Text style={styles.error}>{errors.email.message}</Text>}
           </View>
 
           <View style={styles.stylefield2}>
@@ -67,7 +66,7 @@ const ScreenLogin: React.FC<LoginScreenProps> = ({ navigation }) => {
                 />
               )}
             />
-            {errors.password && <Text>{errors.password.message}</Text>}
+            {errors.password && <Text style={styles.error}>{errors.password.message}</Text>}
           </View>
 
           <View style={styles.buttoncontainer}>
@@ -83,7 +82,7 @@ const ScreenLogin: React.FC<LoginScreenProps> = ({ navigation }) => {
           </View>
 
           <Text style={styles.signuptext}>
-            Don’t have an account? <Text style={styles.signup} onPress={() => navigation.navigate('ScreenSignup')}>Sign in</Text>
+            Don’t have an account? <Text style={styles.signup} onPress={() => navigation.navigate('ScreenSignup')}>Sign Up</Text>
           </Text>
 
           
