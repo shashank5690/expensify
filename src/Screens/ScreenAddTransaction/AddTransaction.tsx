@@ -9,7 +9,7 @@ import { styles } from "./addTransaction";
 import { CategoryButtonProps } from "./utils/types";
 import { ScreenTransferProps } from "./utils/types";
 import { useNavigation } from '@react-navigation/native';
-import { setAmountRedux } from "./redux/transactionSlice";
+import { setAmountRedux,addIncome,addExpense} from "../../utils/redux/transactionSlice";
 import { useDispatch } from "react-redux";
 
 export default function AddTransaction() {
@@ -76,6 +76,12 @@ export default function AddTransaction() {
       await addTransaction(selectedCategoryId, parseFloat(amount), Math.floor(date.getTime() / 1000), description, transactionType);
       console.log('Transaction saved successfully');
      
+      if(transactionType==='Income'){
+        dispatch(addIncome(parseFloat(amount)));
+      }
+      if(transactionType==='Expense'){
+        dispatch(addExpense(parseFloat(amount)));
+      }
       dispatch(setAmountRedux(amount));
 
       setAmount("");

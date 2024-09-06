@@ -1,6 +1,6 @@
 import { combineReducers } from "@reduxjs/toolkit";
 import authReducer from '../../Screens/ScreenLogin/redux/authSlice';
-import transactionReducer from '../../Screens/ScreenAddTransaction/redux/transactionSlice'
+import transactionReducer from './transactionSlice'
 
 const rootReducer = combineReducers({
     auth: authReducer,
