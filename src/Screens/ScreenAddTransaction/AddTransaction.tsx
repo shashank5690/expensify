@@ -1,22 +1,36 @@
 import React, { useEffect, useState } from "react";
-import { Button, Text, TextInput, TouchableOpacity, View, StatusBar, FlatList } from "react-native";
+
+import { Text, TextInput, TouchableOpacity, View, StatusBar, FlatList } from "react-native";
 import SegmentedControl from "@react-native-segmented-control/segmented-control";
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { getCategories } from '../../db/database';
+import { getCategories, addTransaction } from '../../db/database'; 
+
 import Bell from "../../assets/Icons/Bell";
 import Profile from "../../assets/Icons/Profile";
 import { styles } from "./addTransaction";
 import { CategoryButtonProps } from "./utils/types";
 
+import { ScreenTransferProps } from "./utils/types";
+import { useNavigation } from '@react-navigation/native';
+import { setAmountRedux } from "./redux/transactionSlice";
+import { useDispatch } from "react-redux";
+
 export default function AddTransaction() {
-  const [isAddingTransaction, setIsAddingTransaction] = useState(false);
+  const navigation = useNavigation<ScreenTransferProps>();
   const [currentTab, setCurrentTab] = useState(0);
-  const [typeSelected, setTypeSelected] = useState("");
+  const [typeSelected, setTypeSelected] = useState(""); 
+  const [selectedCategoryId, setSelectedCategoryId] = useState<number |null>(null);  
+
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState(new Date());
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [categories, setCategories] = useState<Category[]>([]);
+
+
+  const dispatch = useDispatch();
+
+
 
   interface Category {
     id: number;
@@ -27,6 +41,7 @@ export default function AddTransaction() {
   useEffect(() => {
     fetchCategories();
   }, [currentTab]);
+
 
   const fetchCategories = async () => {
     const categoryType = currentTab === 0 ? "Expense" : "Income";
@@ -42,6 +57,39 @@ export default function AddTransaction() {
     const currentDate = selectedDate || date;
     setShowDatePicker(false);
     setDate(currentDate);
+  };
+  
+  const handleCancelTransaction=()=>{
+    setAmount("");
+      setDescription("");
+      setTypeSelected("");
+      setSelectedCategoryId(null);
+  }
+
+  const handleSaveTransaction = async () => {
+
+    if (!selectedCategoryId || !amount || !description) {
+      console.error("Please fill all the fields");
+      return;
+    }
+
+    
+    const transactionType = currentTab === 0 ? 'Expense' : 'Income';
+    try {
+      await addTransaction(selectedCategoryId, parseFloat(amount), Math.floor(date.getTime() / 1000), description, transactionType);
+      console.log('Transaction saved successfully');
+     
+      dispatch(setAmountRedux(amount));
+
+      setAmount("");
+      setDescription("");
+      setTypeSelected("");
+      setSelectedCategoryId(null);
+      //setIsAddingTransaction(false);
+      navigation.navigate('ScreenTransfer');
+    } catch (error) {
+      console.error('Failed to save transaction', error);
+    }
   };
 
   return (
@@ -85,13 +133,22 @@ export default function AddTransaction() {
             <CategoryButton
               title={item.name}
               isSelected={typeSelected === item.name}
-              setTypeSelected={setTypeSelected}
+
+              setTypeSelected={() => {
+                setTypeSelected(item.name);  
+                setSelectedCategoryId(item.id);  
+              }}
             />
           )}
-          contentContainerStyle={styles.categoryList} 
+          //contentContainerStyle={styles.categoryList} 
+          style={styles.cat}
+          showsVerticalScrollIndicator={false}
+
         />
 
-        <TouchableOpacity
+        
+      </View>
+      <TouchableOpacity
           onPress={() => setShowDatePicker(true)}
           style={styles.datePickerButton}
         >
@@ -109,24 +166,24 @@ export default function AddTransaction() {
           />
         )}
 
-<View style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={[styles.button, styles.saveButton]}
-          onPress={() => {/* Handle  */}}
-        >
-          <Text style={styles.buttonText}>Save</Text>
-        </TouchableOpacity>
 
-        <TouchableOpacity
-          style={[styles.button, styles.cancelButton]}
-          onPress={() => setIsAddingTransaction(false)}
-        >
-          <Text style={styles.buttonText}>Cancel</Text>
-        </TouchableOpacity>
-      </View>
-      </View>
 
-     
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            style={[styles.button, styles.saveButton]}
+            onPress={handleSaveTransaction} 
+          >
+            <Text style={styles.buttonText}>Save</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[styles.button, styles.cancelButton]}
+            onPress={() => handleCancelTransaction}
+          >
+            <Text style={styles.buttonText}>Cancel</Text>
+          </TouchableOpacity>
+        </View>
+
     </View>
   );
 }
@@ -134,7 +191,7 @@ export default function AddTransaction() {
 function CategoryButton({ title, isSelected, setTypeSelected }: CategoryButtonProps) {
   return (
     <TouchableOpacity
-      onPress={() => setTypeSelected(title)}
+    onPress={() => setTypeSelected(title)}
       style={[styles.categoryButton, isSelected && styles.selectedCategoryButton]}
     >
       <Text style={[styles.categoryButtonText, isSelected && styles.selectedCategoryButtonText]}>

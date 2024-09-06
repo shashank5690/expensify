@@ -9,7 +9,6 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { AppStackParamList } from '../utils/types/interface';
 
 const Tab = createBottomTabNavigator<AppStackParamList>();
-
 const BottomNavigation = () => (
     <Tab.Navigator
       screenOptions={({ route }) => ({

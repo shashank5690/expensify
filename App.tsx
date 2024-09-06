@@ -5,6 +5,9 @@ import AppNavigator from './src/Navigation/AppNavigator';
 import store from './src/utils/redux/store'; 
 import { Provider } from 'react-redux';
 import Splash from './src/Screens/ScreenSplash/SplashScreen';
+import ScreenTransfer from './src/Screens/ScreenTransfer/ScreenTransfer';
+import ScreenTransferSuccess from './src/Screens/ScreenTransferSuccess/ScreenTransferSuccess';
+
 
 export default function App() {
   const [dbInitialized, setDbInitialized] = useState(false);
@@ -24,6 +27,8 @@ export default function App() {
   return (
     <Provider store={store}>
       <AppNavigator />
+      {/* <ScreenTransfer/> */}
+      {/* <ScreenTransferSuccess/> */}
     </Provider>
   );
 }

@@ -9,17 +9,19 @@ export const initializeDatabase = async () => {
   try {
     const db = await SQLite.openDatabase({ name: dbName, location: 'default' });
 
-    // Create Categories table with emoji column
+
     await db.executeSql(`
       CREATE TABLE IF NOT EXISTS Categories (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT NOT NULL,
+
         type TEXT NOT NULL CHECK (type IN ('Expense', 'Income')),
         emoji TEXT NOT NULL
       );
     `);
 
     // Create Transactions table
+
     await db.executeSql(`
       CREATE TABLE IF NOT EXISTS Transactions (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -32,12 +34,13 @@ export const initializeDatabase = async () => {
       );
     `);
 
-    // Check if categories exist
+
     const [result] = await db.executeSql('SELECT COUNT(*) as count FROM Categories');
     const count = result.rows.item(0).count;
 
     if (count === 0) {
       const categoriesData = [
+
         ['Utilities', 'Expense', '💡'],
         ['Electronics', 'Expense', '📱'],
         ['Food', 'Expense', '🍽️'],
@@ -60,6 +63,7 @@ export const initializeDatabase = async () => {
           [name, type, emoji]
         );
       }
+
     }
 
     return db;
@@ -86,7 +90,6 @@ export const getCategories = async (type) => {
 };
 
 
-
 export const getTransactions = async () => {
   const db = await SQLite.openDatabase({ name: dbName, location: 'default' });
   try {
@@ -101,6 +104,7 @@ export const getTransactions = async () => {
     throw error;
   }
 };
+
 
 export const addTransaction = async (categoryId, amount, date, description, type) => {
   const db = await SQLite.openDatabase({ name: dbName, location: 'default' });
