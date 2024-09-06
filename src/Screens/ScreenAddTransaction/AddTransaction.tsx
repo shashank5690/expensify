@@ -1,26 +1,44 @@
-import * as React from "react";
-import { Button, Text, TextInput, TouchableOpacity, View, StyleSheet, StatusBar } from "react-native";
+import React, { useEffect, useState } from "react";
+import { Button, Text, TextInput, TouchableOpacity, View, StatusBar, FlatList } from "react-native";
 import SegmentedControl from "@react-native-segmented-control/segmented-control";
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { CategoryButtonProps } from "./utils/types";
+import { getCategories } from '../../db/database';
+import Bell from "../../assets/Icons/Bell";
+import Profile from "../../assets/Icons/Profile";
 import { styles } from "./addTransaction";
-import { categories } from "./utils/types";
-import Bell from "../../assets/Bell";
-import Profile from "../../assets/Profile";
+import { CategoryButtonProps } from "./utils/types";
 
 export default function AddTransaction() {
-  const [isAddingTransaction, setIsAddingTransaction] = React.useState(false);
-  const [currentTab, setCurrentTab] = React.useState(0);
-  const [typeSelected, setTypeSelected] = React.useState("");
-  const [amount, setAmount] = React.useState("");
-  const [description, setDescription] = React.useState("");
-  const [date, setDate] = React.useState(new Date());
-  const [showDatePicker, setShowDatePicker] = React.useState(false);
+  const [isAddingTransaction, setIsAddingTransaction] = useState(false);
+  const [currentTab, setCurrentTab] = useState(0);
+  const [typeSelected, setTypeSelected] = useState("");
+  const [amount, setAmount] = useState("");
+  const [description, setDescription] = useState("");
+  const [date, setDate] = useState(new Date());
+  const [showDatePicker, setShowDatePicker] = useState(false);
+  const [categories, setCategories] = useState<Category[]>([]);
 
-  const categoryType = currentTab === 0 ? "Expense" : "Income";
-  const currentCategories = categories[categoryType];
+  interface Category {
+    id: number;
+    name: string;
+    type: 'Expense' | 'Income';
+  }
 
-  const onDateChange = (event: any, selectedDate?: Date) => {
+  useEffect(() => {
+    fetchCategories();
+  }, [currentTab]);
+
+  const fetchCategories = async () => {
+    const categoryType = currentTab === 0 ? "Expense" : "Income";
+    try {
+      const fetchedCategories: Category[] = await getCategories(categoryType);
+      setCategories(fetchedCategories);
+    } catch (error) {
+      console.error('Failed to fetch categories', error);
+    }
+  };
+
+  const onDateChange = (event:any, selectedDate?:Date) => {
     const currentDate = selectedDate || date;
     setShowDatePicker(false);
     setDate(currentDate);
@@ -52,21 +70,26 @@ export default function AddTransaction() {
           value={description}
           placeholderTextColor="#8E949A"
         />
-        <Text style={styles.entryTypeText}>Select an Transaction type</Text>
+        <Text style={styles.entryTypeText}>Select a Transaction type</Text>
         <SegmentedControl
           values={["Expense", "Income"]}
           selectedIndex={currentTab}
           onChange={(event) => setCurrentTab(event.nativeEvent.selectedSegmentIndex)}
           style={styles.segmentedControl}
         />
-        {currentCategories.map((cat, index) => (
-          <CategoryButton
-            key={index}
-            title={cat}
-            isSelected={typeSelected === cat}
-            setTypeSelected={setTypeSelected}
-          />
-        ))}
+        
+        <FlatList
+          data={categories}
+          keyExtractor={(cat) => cat.id.toString()}
+          renderItem={({ item }) => (
+            <CategoryButton
+              title={item.name}
+              isSelected={typeSelected === item.name}
+              setTypeSelected={setTypeSelected}
+            />
+          )}
+          contentContainerStyle={styles.categoryList} 
+        />
 
         <TouchableOpacity
           onPress={() => setShowDatePicker(true)}
@@ -85,12 +108,11 @@ export default function AddTransaction() {
             onChange={onDateChange}
           />
         )}
-      </View>
 
-      <View style={styles.buttonContainer}>
+<View style={styles.buttonContainer}>
         <TouchableOpacity
           style={[styles.button, styles.saveButton]}
-          onPress={() => {/* Handle save action */}}
+          onPress={() => {/* Handle  */}}
         >
           <Text style={styles.buttonText}>Save</Text>
         </TouchableOpacity>
@@ -102,6 +124,9 @@ export default function AddTransaction() {
           <Text style={styles.buttonText}>Cancel</Text>
         </TouchableOpacity>
       </View>
+      </View>
+
+     
     </View>
   );
 }
@@ -113,7 +138,7 @@ function CategoryButton({ title, isSelected, setTypeSelected }: CategoryButtonPr
       style={[styles.categoryButton, isSelected && styles.selectedCategoryButton]}
     >
       <Text style={[styles.categoryButtonText, isSelected && styles.selectedCategoryButtonText]}>
-        {title}
+       {title}
       </Text>
     </TouchableOpacity>
   );

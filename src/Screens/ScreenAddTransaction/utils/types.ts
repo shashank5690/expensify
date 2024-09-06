@@ -3,7 +3,7 @@ export interface CategoryButtonProps {
     isSelected: boolean;
     setTypeSelected: (type: string) => void;
   }
-  export const categories = {
-    Expense: ["Medical Expense", "Transportation", "Entertainment", "Gifts"],
-    Income: ["Salary", "Business Income", "Freelance Work", "Rental Income"]
+  export interface Category  {
+    name: any,
+    type: any
   };
