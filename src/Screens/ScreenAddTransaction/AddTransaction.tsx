@@ -85,7 +85,6 @@ export default function AddTransaction() {
       setDescription("");
       setTypeSelected("");
       setSelectedCategoryId(null);
-      //setIsAddingTransaction(false);
       navigation.navigate('ScreenTransfer');
     } catch (error) {
       console.error('Failed to save transaction', error);
@@ -178,7 +177,7 @@ export default function AddTransaction() {
 
           <TouchableOpacity
             style={[styles.button, styles.cancelButton]}
-            onPress={() => handleCancelTransaction}
+            onPress={handleCancelTransaction}
           >
             <Text style={styles.buttonText}>Cancel</Text>
           </TouchableOpacity>
