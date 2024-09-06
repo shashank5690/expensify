@@ -14,7 +14,8 @@ export type AppStackParamList = {
     Scanner:undefined;
     ScreenTransfer: undefined;
     ScreenTransferSuccess: undefined;
-    BottomNavigation: undefined;
+    BottomNavigation: { screen: keyof AppStackParamList };
+    DashboardBottom:undefined;
 };
 
 
