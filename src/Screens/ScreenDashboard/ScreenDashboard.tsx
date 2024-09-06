@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useCallback,useEffect} from 'react';
 import { View, Text, StyleSheet, StatusBar, TouchableOpacity, FlatList, ScrollView } from 'react-native';
 import Bell from './assets/Bell';
 import Profile from './assets/Profile';
@@ -15,11 +15,14 @@ import { logoutUser } from '../../utils/firebaseAuth';
 import Logout from './assets/Logout';
 import CardIncome from './Components/CardIncome/CardIncome';
 import CardExpense from './Components/CardExpense/CardExpense';
+import { useFocusEffect } from '@react-navigation/native';
+import { getTransactions } from '../../db/database';
+
+
 
 const Dashboard: React.FC<DashboardProps> = () => {
   const dispatch = useDispatch();
   const [selectedExpense, setSelectedExpense] = useState<string | null>(null);
-
   const handleSelectExpense = (expense: string) => {
     setSelectedExpense(expense === selectedExpense ? null : expense);
   };

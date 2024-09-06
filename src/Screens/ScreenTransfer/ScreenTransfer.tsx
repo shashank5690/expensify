@@ -15,7 +15,11 @@ const ScreenTransfer:React.FC=() => {
   const amount = parseFloat(useSelector((state: RootState) => state.transaction.amount));
    
   const handleBack=()=>{
-   navigation.navigate('BottomNavigation');
+   navigation.navigate('BottomNavigation', {screen: 'AddTransaction'});
+  }
+
+  const handleConfirm=()=>{
+    navigation.navigate('ScreenTransferSuccess')
   }
 
   return (
@@ -60,8 +64,8 @@ const ScreenTransfer:React.FC=() => {
           </View>
         </View>
       </View>
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText}>Send Money</Text>
+      <TouchableOpacity style={styles.button} onPress={handleConfirm} >
+        <Text style={styles.buttonText}>Confirm</Text>
       </TouchableOpacity>
     </View>
   );

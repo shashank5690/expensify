@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from "react";
-
 import { Text, TextInput, TouchableOpacity, View, StatusBar, FlatList } from "react-native";
 import SegmentedControl from "@react-native-segmented-control/segmented-control";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { getCategories, addTransaction } from '../../db/database'; 
-
 import Bell from "../../assets/Icons/Bell";
 import Profile from "../../assets/Icons/Profile";
 import { styles } from "./addTransaction";
 import { CategoryButtonProps } from "./utils/types";
-
 import { ScreenTransferProps } from "./utils/types";
 import { useNavigation } from '@react-navigation/native';
 import { setAmountRedux } from "./redux/transactionSlice";

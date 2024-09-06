@@ -20,7 +20,6 @@ export const initializeDatabase = async () => {
       );
     `);
 
-    // Create Transactions table
 
     await db.executeSql(`
       CREATE TABLE IF NOT EXISTS Transactions (
