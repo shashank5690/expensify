@@ -4,7 +4,9 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from '../../Res
 export const styles = StyleSheet.create({
   container: {
     height: hp('100%'),
+
     backgroundColor: '#FFFFFF',
+
   },
   header: {
     flexDirection: 'row',
@@ -14,6 +16,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     marginTop: hp('3%'),
   },
+
   cat: {
     maxHeight: hp('34%'),
     borderWidth: 1,
@@ -22,6 +25,7 @@ export const styles = StyleSheet.create({
     paddingVertical: hp('1%'),
     paddingHorizontal: wp('3%'),
     backgroundColor: '#F5F5F5',
+
   },
   headerText: {
     fontSize: wp('6%'),
@@ -37,6 +41,7 @@ export const styles = StyleSheet.create({
     //elevation: 3,
     //borderColor: '#E0E0E0',
    // borderWidth: 1,
+
   },
   EnterAmount: {
     fontSize: wp('5%'),
@@ -53,6 +58,7 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#D0D0D0',
   },
+
  datePickerButton: {
     backgroundColor: '#FFFFFF',
     borderRadius: 12,
@@ -102,7 +108,6 @@ export const styles = StyleSheet.create({
   },
   selectedCategoryButton: {
     backgroundColor: "#007BFF20" ,
-    
   },
   categoryButtonText: {
     fontFamily: 'Sofia Pro Bold',

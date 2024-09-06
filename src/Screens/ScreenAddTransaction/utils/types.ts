@@ -12,5 +12,6 @@ export interface CategoryButtonProps {
   export interface Category  {
     name: any,
     type: any
+
   };
   

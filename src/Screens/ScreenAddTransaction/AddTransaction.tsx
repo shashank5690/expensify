@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
+
 import { Text, TextInput, TouchableOpacity, View, StatusBar, FlatList } from "react-native";
 import SegmentedControl from "@react-native-segmented-control/segmented-control";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { getCategories, addTransaction } from '../../db/database'; 
+
 import Bell from "../../assets/Icons/Bell";
 import Profile from "../../assets/Icons/Profile";
 import { styles } from "./addTransaction";
 import { CategoryButtonProps } from "./utils/types";
+
 import { ScreenTransferProps } from "./utils/types";
 import { useNavigation } from '@react-navigation/native';
 import { setAmountRedux } from "./redux/transactionSlice";
@@ -17,13 +20,16 @@ export default function AddTransaction() {
   const [currentTab, setCurrentTab] = useState(0);
   const [typeSelected, setTypeSelected] = useState(""); 
   const [selectedCategoryId, setSelectedCategoryId] = useState<number |null>(null);  
+
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState(new Date());
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [categories, setCategories] = useState<Category[]>([]);
 
+
   const dispatch = useDispatch();
+
 
 
   interface Category {
@@ -37,7 +43,6 @@ export default function AddTransaction() {
   }, [currentTab]);
 
 
-  
   const fetchCategories = async () => {
     const categoryType = currentTab === 0 ? "Expense" : "Income";
     try {
@@ -128,6 +133,7 @@ export default function AddTransaction() {
             <CategoryButton
               title={item.name}
               isSelected={typeSelected === item.name}
+
               setTypeSelected={() => {
                 setTypeSelected(item.name);  
                 setSelectedCategoryId(item.id);  
@@ -137,6 +143,7 @@ export default function AddTransaction() {
           //contentContainerStyle={styles.categoryList} 
           style={styles.cat}
           showsVerticalScrollIndicator={false}
+
         />
 
         
@@ -159,6 +166,8 @@ export default function AddTransaction() {
           />
         )}
 
+
+
         <View style={styles.buttonContainer}>
           <TouchableOpacity
             style={[styles.button, styles.saveButton]}
@@ -174,6 +183,7 @@ export default function AddTransaction() {
             <Text style={styles.buttonText}>Cancel</Text>
           </TouchableOpacity>
         </View>
+
     </View>
   );
 }
@@ -185,7 +195,7 @@ function CategoryButton({ title, isSelected, setTypeSelected }: CategoryButtonPr
       style={[styles.categoryButton, isSelected && styles.selectedCategoryButton]}
     >
       <Text style={[styles.categoryButtonText, isSelected && styles.selectedCategoryButtonText]}>
-        {title}
+       {title}
       </Text>
     </TouchableOpacity>
   );

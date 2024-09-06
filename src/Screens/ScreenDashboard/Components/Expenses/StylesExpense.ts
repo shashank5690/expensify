@@ -10,16 +10,18 @@ const styles = StyleSheet.create({
     },
     expensesContainer: {
       flexDirection: 'row',
+      borderRadius:10,
     },
     expenseBlock: {
       alignItems: 'center',
-      marginRight: 8,
+      marginRight: 12,
+      borderRadius:15,
     },
     expenseCard: {
-      width: 70,
-      height: 70,
+      width: 65,
+      height: 65,
       backgroundColor: '#e9ecef',
-      borderRadius: 14,
+      borderRadius: 15,
       justifyContent: 'center',
       alignItems: 'center',
     },
