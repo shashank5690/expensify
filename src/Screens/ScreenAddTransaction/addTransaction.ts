@@ -126,7 +126,7 @@ export const styles = StyleSheet.create({
     marginHorizontal: wp('3%'),
   },
   cancelButton: {
-    backgroundColor: '#D90429',
+    backgroundColor: '#d90429',
   },
   saveButton: {
     backgroundColor: '#466EFA',
