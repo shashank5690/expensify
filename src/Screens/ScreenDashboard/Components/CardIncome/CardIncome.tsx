@@ -1,21 +1,37 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import MasterLogo from '../../assets/MasterLogo';
 import Chip from '../../assets/Chip';
 import styles from './StyleCardIncome';
 // import { RootState } from '../../../../utils/redux/store';
 import { RootState } from '../../../../utils/redux/rootReducer';
-import { useSelector } from 'react-redux';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { getIncomeExpenseTotals } from '../../../../db/database';
+import { addIncome } from '../../../../utils/redux/transactionSlice';
 const Card: React.FC = () => {
-  const amount=useSelector((state:RootState)=>state.transaction.incomeamount);
+const dispatch=useDispatch();
+  const [totalIncome, setTotalIncome] = useState(0);
+
+  useEffect(() => {
+    fetchTotals();
+  }, []);
+
+  const fetchTotals = async () => {
+    try {
+      const totals = await getIncomeExpenseTotals();
+      setTotalIncome(totals.totalIncome);
+      dispatch(addIncome(totals.totalIncome));
+    } catch (error) {
+      console.error('Failed to fetch income total', error);
+    }
+  };
   return (
     <View style={styles.cardContainer}>
       <View style={styles.balanceRow}>
         <Text style={styles.label}>Available Balance</Text>
         <Chip style={styles.card}/>
       </View>
-      <Text style={styles.balance}>${amount.toFixed(2)}</Text>
+      <Text style={styles.balance}>${totalIncome.toFixed(2)}</Text>
   
 
       <Text style={styles.cardNumber}>1234 5678 9012 3456</Text>

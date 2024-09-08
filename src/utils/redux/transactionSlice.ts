@@ -20,10 +20,10 @@ const transactionSlice = createSlice({
       state.amount = action.payload;
     },
     addIncome:(state,action: PayloadAction<number>)=>{
-      state.incomeamount+=action.payload;
+      state.incomeamount=action.payload;
     },
     addExpense:(state,action: PayloadAction<number>)=>{
-      state.expenseamount+=action.payload;
+      state.expenseamount=action.payload;
     }
   },
 });
