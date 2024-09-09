@@ -1,21 +1,20 @@
-import { StyleSheet } from "react-native";
+ import { StyleSheet } from "react-native";
 
-const styles = StyleSheet.create({
-    transactionsContainer: {
-      marginTop: 20,
+ const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      padding: 16,
+      backgroundColor: '#fff',
+      borderTopLeftRadius: 24,
+      borderTopRightRadius: 24,
+      maxHeight: '80%',
     },
-    transactionsHeader: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      paddingHorizontal: 16,
-      marginBottom: 12,
-    },
-    transactionsHeading: {
-      fontSize: 20,
-      color: '#000',
+    header: {
+      fontSize: 24,
       fontFamily: 'Sofia Pro Bold',
-      right:12,
+      color: '#000',
+      marginBottom: 20,
+      alignSelf: 'center',
     },
     transactionsList: {
       paddingHorizontal: 4,
@@ -28,8 +27,8 @@ const styles = StyleSheet.create({
       borderRadius: 24,
       marginBottom: 12,
       backgroundColor: '#fff',
-      shadowColor: '#9999a1',
-      shadowOffset: { width: 6, height: 10 },
+      shadowColor: '#bfc0c0',
+      shadowOffset: { width: 3, height: 5 },
       shadowOpacity: 0.6,
       shadowRadius: 12,
       elevation: 12,
@@ -51,7 +50,6 @@ const styles = StyleSheet.create({
       fontFamily: 'Sofia Pro Bold',
       color: '#000',
       marginBottom: 4,
-      
     },
     transactionCategory: {
       fontSize: 15,
@@ -69,6 +67,17 @@ const styles = StyleSheet.create({
       fontFamily: 'Sofia Pro Bold',
       color: '#212529',
       textAlign: 'right',
+    },
+    closeButton: {
+      backgroundColor: '#456EFE',
+      padding: 10,
+      borderRadius: 8,
+      alignItems: 'center',
+    },
+    closeButtonText: {
+      color: '#fff', 
+      fontSize: 18,
+      fontFamily: 'Sofia Pro Bold',
     },
   });
 
