@@ -25,6 +25,7 @@
     "@reduxjs/toolkit": "^2.2.7",
     "lottie-ios": "^3.4.0",
     "lottie-react-native": "^6.7.2",
+    "mkdirp": "^3.0.1",
     "react": "18.3.1",
     "react-hook-form": "^7.53.0",
     "react-native": "0.75.2",
@@ -38,6 +39,7 @@
     "react-native-sqlite-storage": "^6.0.1",
     "react-native-svg": "^15.6.0",
     "react-native-vector-icons": "^10.1.0",
+    "react-native-vision-camera": "^4.5.3",
     "react-redux": "^9.1.2",
     "yup": "^1.4.0"
   },
