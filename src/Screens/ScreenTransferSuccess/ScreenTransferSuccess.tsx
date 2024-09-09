@@ -3,8 +3,15 @@ import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { styles } from './styleTransferSuccess';
 import Profile from '../ScreenDashboard/assets/Profile';
 import Bell from '../ScreenDashboard/assets/Bell';
+import { ScreenDashboardProps } from './utils/types';
+import { useNavigation } from '@react-navigation/native';
 
 const ScreenTransferSuccess = () => {
+  const navigation = useNavigation<ScreenDashboardProps>(); 
+
+  const handleView=()=>{
+    navigation.navigate('DashboardBottom')
+  }
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -20,8 +27,8 @@ const ScreenTransferSuccess = () => {
       </View>
       <Image source={require('./assets/Success.png')} style={styles.successImage} />
       
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText}>View Receipt</Text>
+      <TouchableOpacity style={styles.button} onPress={handleView}>
+        <Text style={styles.buttonText}>View</Text>
       </TouchableOpacity>
     </View>
   );

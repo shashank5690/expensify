@@ -26,6 +26,10 @@ import MonthTransactions from './Components/QuickActionCard/MonthTransactions';
 import WeekTransactions from './Components/QuickActionCard/WeekTransactions';
 import DayTransactions from './Components/QuickActionCard/DayTransactions';
 import Modal from 'react-native-modal';
+import { useFocusEffect } from '@react-navigation/native';
+import { getTransactions } from '../../db/database';
+
+
 
 const Dashboard: React.FC<DashboardProps> = () => {
   const dispatch = useDispatch();
@@ -33,7 +37,6 @@ const Dashboard: React.FC<DashboardProps> = () => {
   const [isMonthSheetVisible, setIsMonthSheetVisible] = useState(false);
   const [isWeekSheetVisible, setIsWeekSheetVisible] = useState(false);
   const [isDaySheetVisible, setIsDaySheetVisible] = useState(false);
-
   const handleSelectExpense = (expense: string) => {
     setSelectedExpense(expense === selectedExpense ? null : expense);
   };

@@ -16,6 +16,9 @@ import Splash from '../Screens/ScreenSplash/SplashScreen';
 
 import ScreenTransfer from '../Screens/ScreenTransfer/ScreenTransfer';
 import AddTransaction from '../Screens/ScreenAddTransaction/AddTransaction';
+import ScreenTransferSuccess from '../Screens/ScreenTransferSuccess/ScreenTransferSuccess';
+import Dashboard from '../Screens/ScreenDashboard/ScreenDashboard';
+import DashboardBottom from './DashboardBottom';
 
 
 const AuthStack = createStackNavigator<AuthStackParamList>();
@@ -69,7 +72,8 @@ const AppNavigator: React.FC = () => {
           <AppStack.Screen name="BottomNavigation" component={BottomNavigation} options={{ headerShown: false }} />
           <AppStack.Screen name="ScreenTransfer" component={ScreenTransfer} options={{ headerShown: false }} />
           <AppStack.Screen  name="AddTransaction" component={AddTransaction} options={{ headerShown: false }}  />
-
+          <AppStack.Screen name="ScreenTransferSuccess" component={ScreenTransferSuccess} options={{ headerShown: false }} />
+          <AppStack.Screen name="DashboardBottom" component={DashboardBottom} options={{ headerShown: false }} />
         </AppStack.Navigator>
       ) : (
         <AuthStack.Navigator initialRouteName="OnboardScreen">
