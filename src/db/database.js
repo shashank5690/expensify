@@ -33,6 +33,21 @@ export const initializeDatabase = async () => {
       );
     `);
 
+    await db.executeSql(`
+      CREATE TABLE IF NOT EXISTS IncomeExpense (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        totalIncome REAL DEFAULT 0,
+        totalExpense REAL DEFAULT 0
+      );
+    `);
+    
+    const [resulti] = await db.executeSql('SELECT COUNT(*) as count FROM IncomeExpense');
+    const counti = resulti.rows.item(0).count;
+    
+    if (counti === 0) {
+      await db.executeSql('INSERT INTO IncomeExpense (totalIncome, totalExpense) VALUES (0, 0)');
+    }
+    
 
     const [result] = await db.executeSql('SELECT COUNT(*) as count FROM Categories');
     const count = result.rows.item(0).count;
@@ -182,16 +197,38 @@ export const getTransactionsByDay = async () => {
 
 export const addTransaction = async (categoryId, amount, date, description, type) => {
   const db = await SQLite.openDatabase({ name: dbName, location: 'default' });
-  
+
   try {
     await db.executeSql(
       `INSERT INTO Transactions (category_id, amount, date, description, type) 
        VALUES (?, ?, ?, ?, ?);`,
       [categoryId, amount, date, description, type]
     );
-    console.log('Transaction added successfully');
+
+    if (type === 'Income') {
+      await db.executeSql(`UPDATE IncomeExpense SET totalIncome = totalIncome + ?`, [amount]);
+    } else {
+      await db.executeSql(`UPDATE IncomeExpense SET totalExpense = totalExpense + ?`, [amount]);
+    }
+
+    console.log('Transaction added and totals updated successfully');
   } catch (error) {
     console.error('Failed to add transaction:', error);
     throw error;
   }
 };
+export const getIncomeExpenseTotals = async () => {
+  const db = await SQLite.openDatabase({ name: dbName, location: 'default' });
+  try {
+    const [results] = await db.executeSql('SELECT totalIncome, totalExpense FROM IncomeExpense');
+    if (results.rows.length > 0) {
+      return results.rows.item(0);
+    } else {
+      return { totalIncome: 0, totalExpense: 0 };
+    }
+  } catch (error) {
+    console.error('Failed to fetch income and expense totals:', error);
+    throw error;
+  }
+};
+

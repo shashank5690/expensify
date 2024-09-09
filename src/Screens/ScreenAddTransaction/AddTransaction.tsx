@@ -76,12 +76,7 @@ export default function AddTransaction() {
       await addTransaction(selectedCategoryId, parseFloat(amount), Math.floor(date.getTime() / 1000), description, transactionType);
       console.log('Transaction saved successfully');
      
-      if(transactionType==='Income'){
-        dispatch(addIncome(parseFloat(amount)));
-      }
-      if(transactionType==='Expense'){
-        dispatch(addExpense(parseFloat(amount)));
-      }
+      
       dispatch(setAmountRedux(amount));
 
       setAmount("");
