@@ -19,6 +19,13 @@ export  const styles = StyleSheet.create({
     color: '#23303B',
     fontFamily: 'Sofia Pro Bold',
   },
+  QrScanner:{
+    height: 270,
+    width: 270,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius:25,
+  },
   scanningSection: {
     flex: 1,
     alignItems: 'center',

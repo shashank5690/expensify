@@ -7,6 +7,8 @@ export type AuthStackParamList = {
     ScreenLogin: undefined;
     ScreenSignup: undefined;
     DashboardBottom:undefined;
+    ScreenFingerprint:undefined;
+
 };
 
 export type AppStackParamList = {
@@ -25,4 +27,5 @@ export type OnboardScreenProps = StackScreenProps<AuthStackParamList, 'OnboardSc
 export type LoginScreenProps = StackScreenProps<AuthStackParamList, 'ScreenLogin'>;
 export type RegisterScreenProps = StackScreenProps<AuthStackParamList, 'ScreenSignup'>;
 export type RegisterProps=NativeStackNavigationProp<AuthStackParamList, 'ScreenSignup'>;
+export type FingerScreenProps=NativeStackNavigationProp<AuthStackParamList, 'ScreenFingerprint'>;
 

@@ -2,10 +2,13 @@
   "java.compile.nullAnalysis.mode": "automatic",
   "cSpell.words": [
     "buttoncontainer",
+    "describtion",
     "hookform",
+    "loginnav",
     "Rohit",
     "signup",
     "signuptext",
     "stylefield"
-  ]
+  ],
+  "java.configuration.updateBuildConfiguration": "interactive"
 }

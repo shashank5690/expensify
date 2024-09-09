@@ -17,6 +17,7 @@ import AddTransaction from '../Screens/ScreenAddTransaction/AddTransaction';
 import ScreenTransferSuccess from '../Screens/ScreenTransferSuccess/ScreenTransferSuccess';
 import Dashboard from '../Screens/ScreenDashboard/ScreenDashboard';
 import DashboardBottom from './DashboardBottom';
+import ScreenFingerprint from '../Screens/ScreenFingerprint/ScreenFingerprint';
 
 const AuthStack = createStackNavigator<AuthStackParamList>();
 const AppStack = createStackNavigator<AppStackParamList>();
@@ -74,6 +75,7 @@ const AppNavigator: React.FC = () => {
           <AuthStack.Screen name="OnboardScreen" component={OnboardScreen} options={{ headerShown: false }} />
           <AuthStack.Screen name="ScreenLogin" component={ScreenLogin} options={{ headerShown: false }} />
           <AuthStack.Screen name="ScreenSignup" component={ScreenSignup} options={{ headerShown: false }} />
+          <AuthStack.Screen name="ScreenFingerprint" component={ScreenFingerprint} options={{ headerShown: false }} />
         </AuthStack.Navigator>
       )}
     </NavigationContainer>

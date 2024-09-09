@@ -30,8 +30,9 @@ const ScreenScanner = () => {
           <TopEdge />
         </View>
         {isScanning ? (
+          <View style={styles.QrScanner}>
           <QRScanner/>
-        
+          </View>
         ) : (
           <Scanner />
         )}

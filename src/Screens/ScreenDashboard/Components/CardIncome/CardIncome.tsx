@@ -28,7 +28,7 @@ const dispatch=useDispatch();
   return (
     <View style={styles.cardContainer}>
       <View style={styles.balanceRow}>
-        <Text style={styles.label}>Available Balance</Text>
+        <Text style={styles.label}>Total Income</Text>
         <Chip style={styles.card}/>
       </View>
       <Text style={styles.balance}>${totalIncome.toFixed(2)}</Text>
