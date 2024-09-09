@@ -1,6 +1,9 @@
-import React from 'react';
+// components/Expenses.tsx
+import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons'; 
+import Modal from 'react-native-modal';
+import CategoryTransaction from '../CategoryTransaction/CategoryTransaction';
 import styles from './StylesExpense'; 
 
 interface ExpensesProps {
@@ -9,6 +12,9 @@ interface ExpensesProps {
 }
 
 const Expenses: React.FC<ExpensesProps> = ({ selectedExpense, onSelectExpense }) => {
+  const [isBottomSheetVisible, setBottomSheetVisible] = useState(false);
+  const [selectedCategoryId, setSelectedCategoryId] = useState<number | null>(null);
+
   const isSelected = (expense: string) => selectedExpense === expense;
 
   const expenseIcons: Record<string, string> = {
@@ -28,6 +34,29 @@ const Expenses: React.FC<ExpensesProps> = ({ selectedExpense, onSelectExpense })
     'Investments': 'stats-chart', 
   };
 
+  const categoryIds: Record<string, number> = {
+    'Utilities': 1,
+    'Electronics': 2,
+    'Food': 3,
+    'Rent': 4,
+    'Household': 5,
+    'Transportation': 6,
+    'Medical': 7,
+    'Bonus': 8,
+    'Consulting': 9,
+    'Part-time': 10,
+    'Sales': 11,
+    'Freelance': 12,
+    'Salary': 13,
+    'Investments': 14,
+  };
+
+  const handleIconPress = (expense: string, categoryId: number) => {
+    onSelectExpense(expense);
+    setSelectedCategoryId(categoryId);
+    setBottomSheetVisible(true);
+  };
+
   return (
     <>
       <Text style={styles.expensesText}>Categories</Text>
@@ -39,7 +68,7 @@ const Expenses: React.FC<ExpensesProps> = ({ selectedExpense, onSelectExpense })
                 styles.expenseCard,
                 isSelected(label) && { backgroundColor: '#456EFE' },
               ]}
-              onPress={() => onSelectExpense(label)}
+              onPress={() => handleIconPress(label, categoryIds[label])} // Pass both arguments
             >
               <Ionicons
                 name={iconName}
@@ -56,6 +85,17 @@ const Expenses: React.FC<ExpensesProps> = ({ selectedExpense, onSelectExpense })
           </View>
         ))}
       </ScrollView>
+
+      <Modal
+        isVisible={isBottomSheetVisible}
+        onBackdropPress={() => setBottomSheetVisible(false)}
+        style={{ justifyContent: 'flex-end', margin: 0 }}
+      >
+        <CategoryTransaction 
+          categoryId={selectedCategoryId} 
+          onClose={() => setBottomSheetVisible(false)} 
+        />
+      </Modal>
     </>
   );
 };
