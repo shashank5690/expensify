@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
       fontSize: 14,
       color: '#fff',
       marginLeft: 12,
-      fontFamily: 'Sofia Pro',
+      fontFamily: 'Sofia Pro Bold',
     },
      card:{
       marginLeft: 35,
