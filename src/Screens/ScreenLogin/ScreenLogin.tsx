@@ -1,35 +1,51 @@
 import React from 'react';
-import { View, Text, ScrollView, TouchableOpacity, KeyboardAvoidingView, Platform } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, KeyboardAvoidingView, TextInput } from 'react-native';
 import { styles } from './styleLogin';
 import { LoginFormData } from './utils/types';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Controller, useForm } from 'react-hook-form';
 import { loginSchema } from './utils/LoginValidation';
-import { TextInput } from 'react-native';
 import Finger from '../ScreenFingerprint/Assets/Finger';
 import MyCircleSvg from '../ScreenFingerprint/Assets/MyCircleSvg';
 import { LoginScreenProps } from '../../utils/types/interface';
 import { loginUser } from '../../utils/firebaseAuth';
 import { useDispatch } from 'react-redux';
+import { useNavigation } from '@react-navigation/native';
+import { ScreenDas } from '../ScreenTransfer/utils/types';
+import { RegisterProps } from '../../utils/types/interface';
 
-const ScreenLogin: React.FC<LoginScreenProps> = ({ navigation }) => {
+
+const ScreenLogin: React.FC<LoginScreenProps> = () => {
   const { control, handleSubmit, formState: { errors } } = useForm<LoginFormData>({
     resolver: yupResolver(loginSchema),
   });
+  const navigation=useNavigation<ScreenDas>();
+
+  const nav=useNavigation<RegisterProps>(); 
+
   const dispatch = useDispatch();
 
   const onSubmit = (data: LoginFormData) => {
     loginUser(data.email, data.password, dispatch);
   }
 
+  const handleLongPress = async () => {
+    try {
+      await loginUser('Rohit@gmail.com', 'Rohit@123', dispatch); 
+      navigation.navigate('BottomNavigation',{screen:'Dashboard'}); 
+    } catch (error) {
+      console.error('Login failed:', error);
+    }
+  };
+  
+
   return (
     <KeyboardAvoidingView
       style={styles.container}
     >
       <ScrollView contentContainerStyle={styles.scrollView}>
-        
         <View style={styles.innerContainer}>
-        <View style={styles.MyCircleSvg}>
+          <View style={styles.MyCircleSvg}>
             <MyCircleSvg />
           </View>
           <Text style={styles.text}>Login to Your Account</Text>
@@ -77,15 +93,15 @@ const ScreenLogin: React.FC<LoginScreenProps> = ({ navigation }) => {
 
           <Text style={styles.forget}>Forget Email / Password ?</Text>
 
-          <View style={styles.finger}>
-            <Finger />
-          </View>
+          <TouchableOpacity onLongPress={handleLongPress}>
+            <View style={styles.finger}>
+              <Finger />
+            </View>
+          </TouchableOpacity>
 
           <Text style={styles.signuptext}>
-            Don’t have an account? <Text style={styles.signup} onPress={() => navigation.navigate('ScreenSignup')}>Sign Up</Text>
+            Don’t have an account? <Text style={styles.signup} onPress={() => nav.navigate('ScreenSignup')}>Sign Up</Text>
           </Text>
-
-          
         </View>
       </ScrollView>
     </KeyboardAvoidingView>

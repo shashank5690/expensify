@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, TouchableOpacity } from 'react-native';
-import { getTransactionsByDay, getCategories } from '../../../../db/database'; 
+import React, {useEffect, useState} from 'react';
+import {View, Text, FlatList, TouchableOpacity} from 'react-native';
+import {getTransactionsByDay, getCategories} from '../../../../db/database';
 import styles from './StylesQuickAction';
 
 interface DayTransactionProps {
@@ -22,16 +22,19 @@ interface Category {
   emoji: string;
 }
 
-const DayTransactions: React.FC<DayTransactionProps> = ({ onClose }) => {
+const DayTransactions: React.FC<DayTransactionProps> = ({onClose}) => {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
 
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const fetchedExpenseCategories = await getCategories('Expense'); 
-        const fetchedIncomeCategories = await getCategories('Income'); 
-        setCategories([...fetchedExpenseCategories, ...fetchedIncomeCategories]); 
+        const fetchedExpenseCategories = await getCategories('Expense');
+        const fetchedIncomeCategories = await getCategories('Income');
+        setCategories([
+          ...fetchedExpenseCategories,
+          ...fetchedIncomeCategories,
+        ]);
       } catch (error) {
         console.error('Failed to fetch categories:', error);
       }
@@ -43,9 +46,10 @@ const DayTransactions: React.FC<DayTransactionProps> = ({ onClose }) => {
         const formattedTransactions = fetchedTransactions.map(transaction => ({
           ...transaction,
           date: new Date(transaction.date * 1000).toLocaleDateString(),
-          amount: transaction.type === 'Income'
-            ? `+₹${transaction.amount.toFixed(2)}`
-            : `-₹${transaction.amount.toFixed(2)}`,
+          amount:
+            transaction.type === 'Income'
+              ? `+₹${transaction.amount.toFixed(2)}`
+              : `-₹${transaction.amount.toFixed(2)}`,
         }));
         setTransactions(formattedTransactions);
       } catch (error) {
@@ -59,10 +63,10 @@ const DayTransactions: React.FC<DayTransactionProps> = ({ onClose }) => {
 
   const getCategoryDetails = (categoryId: number) => {
     const category = categories.find(cat => cat.id === categoryId);
-    return category ? category : { name: 'Unknown Category', emoji: '❓' };
+    return category ? category : {name: 'Unknown Category', emoji: '❓'};
   };
 
-  const renderTransactionItem = ({ item }: { item: Transaction }) => {
+  const renderTransactionItem = ({item}: {item: Transaction}) => {
     const category = getCategoryDetails(item.category_id);
 
     return (
@@ -86,9 +90,9 @@ const DayTransactions: React.FC<DayTransactionProps> = ({ onClose }) => {
       <FlatList
         data={transactions}
         renderItem={renderTransactionItem}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={item => item.id.toString()}
         contentContainerStyle={styles.transactionsList}
-        showsVerticalScrollIndicator={false} 
+        showsVerticalScrollIndicator={false}
       />
       <TouchableOpacity style={styles.closeButton} onPress={onClose}>
         <Text style={styles.closeButtonText}>Close</Text>

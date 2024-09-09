@@ -1,3 +1,11 @@
 {
-  "java.compile.nullAnalysis.mode": "automatic"
+  "java.compile.nullAnalysis.mode": "automatic",
+  "cSpell.words": [
+    "buttoncontainer",
+    "hookform",
+    "Rohit",
+    "signup",
+    "signuptext",
+    "stylefield"
+  ]
 }
