@@ -11,15 +11,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { setUser } from '../Screens/ScreenLogin/redux/authSlice';
 import auth from '@react-native-firebase/auth';
 import BottomNavigation from './BottomNavigation';
-
 import Splash from '../Screens/ScreenSplash/SplashScreen';
-
 import ScreenTransfer from '../Screens/ScreenTransfer/ScreenTransfer';
 import AddTransaction from '../Screens/ScreenAddTransaction/AddTransaction';
 import ScreenTransferSuccess from '../Screens/ScreenTransferSuccess/ScreenTransferSuccess';
 import Dashboard from '../Screens/ScreenDashboard/ScreenDashboard';
 import DashboardBottom from './DashboardBottom';
-
 
 const AuthStack = createStackNavigator<AuthStackParamList>();
 const AppStack = createStackNavigator<AppStackParamList>();
@@ -28,8 +25,6 @@ const AppNavigator: React.FC = () => {
   const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
   const dispatch = useDispatch();
   const [isSplashVisible, setIsSplashVisible] = useState(true);
-
-
 
   useEffect(() => {
     const checkToken = async () => {
@@ -44,15 +39,15 @@ const AppNavigator: React.FC = () => {
             };
             dispatch(setUser(user));
           }
-        } else { 
+        } else {
           dispatch(setUser(null));
         }
       } catch (error) {
         dispatch(setUser(null));
-      }finally {
+      } finally {
         setTimeout(() => {
           setIsSplashVisible(false);
-        }, 1500); 
+        }, 1500);
       }
     };
 
@@ -63,17 +58,16 @@ const AppNavigator: React.FC = () => {
     return <Splash />;
   }
 
-
-
   return (
     <NavigationContainer>
       {isAuthenticated ? (
-          <AppStack.Navigator>
+        <AppStack.Navigator>
           <AppStack.Screen name="BottomNavigation" component={BottomNavigation} options={{ headerShown: false }} />
           <AppStack.Screen name="ScreenTransfer" component={ScreenTransfer} options={{ headerShown: false }} />
-          <AppStack.Screen  name="AddTransaction" component={AddTransaction} options={{ headerShown: false }}  />
+          <AppStack.Screen name="AddTransaction" component={AddTransaction} options={{ headerShown: false }} />
           <AppStack.Screen name="ScreenTransferSuccess" component={ScreenTransferSuccess} options={{ headerShown: false }} />
-          <AppStack.Screen name="DashboardBottom" component={DashboardBottom} options={{ headerShown: false }} />
+          <AppStack.Screen name="Dashboard" component={Dashboard} options={{ headerShown: false }} />
+          <AuthStack.Screen name="DashboardBottom" component={DashboardBottom} options={{ headerShown: false }} />
         </AppStack.Navigator>
       ) : (
         <AuthStack.Navigator initialRouteName="OnboardScreen">

@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import {
   View,
   Text,
-  StyleSheet,
   StatusBar,
   TouchableOpacity,
   ScrollView,
@@ -26,9 +25,6 @@ import MonthTransactions from './Components/QuickActionCard/MonthTransactions';
 import WeekTransactions from './Components/QuickActionCard/WeekTransactions';
 import DayTransactions from './Components/QuickActionCard/DayTransactions';
 import Modal from 'react-native-modal';
-import { useFocusEffect } from '@react-navigation/native';
-import { getTransactions } from '../../db/database';
-
 
 
 const Dashboard: React.FC<DashboardProps> = () => {
@@ -87,28 +83,27 @@ const Dashboard: React.FC<DashboardProps> = () => {
         showsHorizontalScrollIndicator={false}
         style={styles.cardScrollViewQuickActions}
         contentContainerStyle={styles.cardScrollViewContentQuickAction}>
-      <View style={styles.actionsContainer}>
-        <TouchableOpacity
-          style={styles.actionCard}
-          onPress={handleOpenMonthSheet}>
-          <Month style={styles.icon1} />
-          <Text style={styles.actionText1}>Month</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.actionCard}
-          onPress={handleOpenWeekSheet}>
-          <Week style={styles.icon2} />
-          <Text style={styles.actionText2}>Week</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.actionCard}
-          onPress={handleOpenDaySheet}>
-          <Day style={styles.icon3} />
-          <Text style={styles.actionText3}>Day</Text>
-        </TouchableOpacity>
-      </View>
+        <View style={styles.actionsContainer}>
+          <TouchableOpacity
+            style={styles.actionCard}
+            onPress={handleOpenMonthSheet}>
+            <Month style={styles.icon1} />
+            <Text style={styles.actionText1}>Month</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.actionCard}
+            onPress={handleOpenWeekSheet}>
+            <Week style={styles.icon2} />
+            <Text style={styles.actionText2}>Week</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.actionCard}
+            onPress={handleOpenDaySheet}>
+            <Day style={styles.icon3} />
+            <Text style={styles.actionText3}>Day</Text>
+          </TouchableOpacity>
+        </View>
       </ScrollView>
-
 
       <Expenses
         selectedExpense={selectedExpense}
