@@ -24,6 +24,9 @@ export const styles = StyleSheet.create({
     fontSize: wp('4.5%'),
     justifyContent: 'center',
     fontFamily: 'Sofia Pro Bold',
+    color:'#fff',
+    gap: hp('2%'),
+    lineHeight: hp('3%'),
   },
   finger: {
     width: wp('15%'),

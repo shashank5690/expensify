@@ -217,6 +217,36 @@ export const addTransaction = async (categoryId, amount, date, description, type
     throw error;
   }
 };
+
+
+export const deleteTransaction = async (transactionId) => {
+  const db = await SQLite.openDatabase({ name: dbName, location: 'default' });
+
+  try {
+    const [results] = await db.executeSql('SELECT amount, type FROM Transactions WHERE id = ?;', [transactionId]);
+
+    if (results.rows.length > 0) {
+      const { amount, type } = results.rows.item(0);
+
+      await db.executeSql('DELETE FROM Transactions WHERE id = ?;', [transactionId]);
+
+      if (type === 'Income') {
+        await db.executeSql('UPDATE IncomeExpense SET totalIncome = totalIncome - ?;', [amount]);
+      } else if (type === 'Expense') {
+        await db.executeSql('UPDATE IncomeExpense SET totalExpense = totalExpense - ?;', [amount]);
+      }
+
+      console.log('Transaction deleted and totals updated successfully');
+    } else {
+      console.error('Transaction not found for deletion');
+    }
+  } catch (error) {
+    console.error('Failed to delete transaction:', error);
+    throw error;
+  }
+};
+
+
 export const getIncomeExpenseTotals = async () => {
   const db = await SQLite.openDatabase({ name: dbName, location: 'default' });
   try {

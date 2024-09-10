@@ -1,23 +1,25 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
-import { getTransactions, getCategories } from '../../../../db/database';
+import React, {useEffect, useState} from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  Alert,
+  TouchableOpacity,
+} from 'react-native';
+import {
+  getTransactions,
+  getCategories,
+  deleteTransaction,
+} from '../../../../db/database';
 import styles from './stylesTransaction';
-
-interface Category {
-  id: number;
-  name: string;
-  type: string;
-  emoji: string;  
-}
-
-interface Transaction {
-  id: number;
-  category_id: number;
-  amount: number;
-  date: number;
-  description: string;
-  type: string;
-}
+import {
+  ALERT_TYPE,
+  Dialog,
+  AlertNotificationRoot,
+} from 'react-native-alert-notification';
+import Category from '../../Utils/types';
+import Transaction from '../../Utils/types';
 
 const Transactions: React.FC = () => {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
@@ -39,9 +41,10 @@ const Transactions: React.FC = () => {
       const formattedTransactions = fetchedTransactions.map(transaction => ({
         ...transaction,
         date: new Date(transaction.date * 1000).toLocaleDateString(),
-        amount: transaction.type === 'Income'
-          ? `+₹${transaction.amount.toFixed(2)}`
-          : `-₹${transaction.amount.toFixed(2)}`,
+        amount:
+          transaction.type === 'Income'
+            ? `+₹${transaction.amount.toFixed(2)}`
+            : `-₹${transaction.amount.toFixed(2)}`,
       }));
       setTransactions(formattedTransactions);
     } catch (error) {
@@ -56,42 +59,64 @@ const Transactions: React.FC = () => {
 
   const getCategoryDetails = (categoryId: number) => {
     const category = categories.find(cat => cat.id === categoryId);
-    return category ? category : { name: 'Unknown Category', emoji: '❓' };
+    return category ? category : {name: 'Unknown Category', emoji: '❓'};
   };
 
-  const renderTransactionItem = ({ item }: { item: Transaction }) => {
+  const handleDeleteTransaction = async (id: number) => {
+    Dialog.show({
+      type: ALERT_TYPE.DANGER,
+      title: 'Delete Transaction',
+      textBody: 'Are you sure you want to delete this transaction?',
+      button: 'Delete',
+      onPressButton: async () => {
+        try {
+          await deleteTransaction(id);
+          setTransactions(
+            transactions.filter(transaction => transaction.id !== id),
+          );
+          Dialog.hide();
+        } catch (error) {
+          console.error('Failed to delete transaction:', error);
+        }
+      },
+    });
+  };
+
+  const renderTransactionItem = ({item}: {item: Transaction}) => {
     const category = getCategoryDetails(item.category_id);
 
     return (
-      <View style={styles.transactionCard}>
+      <TouchableOpacity
+        style={styles.transactionCard}
+        onLongPress={() => handleDeleteTransaction(item.id)}>
         <View style={styles.emojiContainer}>
           <Text style={styles.emoji}>{category.emoji}</Text>
         </View>
         <View style={styles.transactionDetails}>
           <Text style={styles.transactionDescription}>{item.description}</Text>
-          <Text style={styles.transactionCategory}>
-            {category.name}
-          </Text>
+          <Text style={styles.transactionCategory}>{category.name}</Text>
           <Text style={styles.transactionDate}>{item.date}</Text>
         </View>
         <Text style={styles.transactionAmount}>{item.amount}</Text>
-      </View>
+      </TouchableOpacity>
     );
   };
 
   return (
-    <View style={styles.transactionsContainer}>
-      <View style={styles.transactionsHeader}>
-        <Text style={styles.transactionsHeading}>Transactions</Text>
+    <AlertNotificationRoot>
+      <View style={styles.transactionsContainer}>
+        <View style={styles.transactionsHeader}>
+          <Text style={styles.transactionsHeading}>Transactions</Text>
+        </View>
+        <FlatList
+          data={transactions}
+          renderItem={renderTransactionItem}
+          keyExtractor={item => item.id.toString()}
+          showsVerticalScrollIndicator={false}
+          style={styles.transactionsList}
+        />
       </View>
-      <FlatList
-        data={transactions}
-        renderItem={renderTransactionItem}
-        keyExtractor={(item) => item.id.toString()}
-        showsVerticalScrollIndicator={false}
-        style={styles.transactionsList}
-      />
-    </View>
+    </AlertNotificationRoot>
   );
 };
 
