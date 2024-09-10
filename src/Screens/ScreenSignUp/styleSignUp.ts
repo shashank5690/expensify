@@ -39,7 +39,7 @@ export const styles = StyleSheet.create({
     input: {
         color: '#A4A9AE',
         fontSize: wp('4%'), 
-        fontFamily: Fonts.SofiaPro,
+        fontFamily: 'Sofia Pro Bold',
         paddingTop: hp('2%'), 
         paddingLeft: wp('5%'), 
     },
@@ -65,7 +65,7 @@ export const styles = StyleSheet.create({
     forget: {
         fontSize: wp('4.5%'),
         color: '#8E949A',
-        fontFamily: 'Sofia Pro',
+        fontFamily: 'Sofia Pro Bold',
         marginBottom: hp('5%'), 
         textAlign: 'center',
         top: hp('2%'), 

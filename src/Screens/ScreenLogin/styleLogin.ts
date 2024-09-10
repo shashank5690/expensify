@@ -38,7 +38,7 @@ export const styles = StyleSheet.create({
     input: {
         color: '#A4A9AE',
         fontSize: wp('4%'),
-        fontFamily: 'Sofia Pro',
+        fontFamily: 'Sofia Pro Bold',
         paddingTop: hp('2%'),
         paddingLeft: wp('4%'),
     },
@@ -64,7 +64,7 @@ export const styles = StyleSheet.create({
     forget: {
         fontSize: wp('5%'),
         color: '#8E949A',
-        fontFamily: 'Sofia Pro',
+        fontFamily: 'Sofia Pro Bold',
         marginBottom: hp('5%'),
         textAlign: 'center',
         top: hp('2%'),
@@ -86,7 +86,7 @@ export const styles = StyleSheet.create({
         paddingLeft:wp('0.5%')
     },
     signuptext: {
-        fontFamily: 'Sofia Pro',
+        fontFamily: 'Sofia Pro Bold',
         fontSize: wp('5%'),
         fontWeight: '400',
         lineHeight: wp('6%'),
