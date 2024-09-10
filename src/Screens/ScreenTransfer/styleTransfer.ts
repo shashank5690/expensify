@@ -1,0 +1,128 @@
+import { StyleSheet } from 'react-native';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from '../../Responsive/Responsive';
+
+export const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#FFFFFF',
+  },
+  navbar: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: wp('6%'), 
+    marginTop: hp('2%'), 
+  },
+  text: {
+    fontFamily: 'Sofia Pro Bold',
+    fontSize: wp('5.5%'), 
+    fontWeight: '700',
+    lineHeight: wp('5.5%'),
+    textAlign: 'left',
+    color: '#23303B',
+  },
+  sure: {
+    fontFamily: 'Sofia Pro Bold',
+    fontSize: wp('7.5%'),
+    fontWeight: '600',
+    lineHeight: wp('9%'),
+    textAlign: 'center',
+    color: '#456EFE',
+    marginBottom: hp('1%'), 
+  },
+  policy: {
+    width: wp('80%'), 
+    fontFamily: 'Sofia Pro',
+    fontSize: wp('4.5%'), 
+    fontWeight: '500',
+    lineHeight: wp('7%'),
+    textAlign: 'center',
+    color: '#A4A9AE',
+    marginLeft: wp('9%'), 
+  },
+  policytext: {
+    marginTop: hp('2%'), 
+  },
+  rec: {
+    width: wp('100%'), 
+    height: hp('1%'), 
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: hp('32%'), 
+  },
+  imageContainer: {
+    alignItems: 'center',
+    position: 'relative',
+  },
+  profileImage: {
+    position: 'absolute',
+    top: hp('3%'),
+    width: wp('30%'), 
+    height: wp('30%'), 
+    borderRadius: wp('15%'), 
+  },
+  name: {
+    fontFamily: 'Sofia Pro Bold',
+    fontWeight: '700',
+    fontSize: wp('6.5%'),
+    color: '#23303B',
+  },
+  number: {
+    fontFamily: 'Sofia Pro',
+    fontWeight: '500',
+    fontSize: wp('4%'),
+    color: '#8E949A',
+    marginLeft: wp('3%'), 
+  },
+  div: {
+    position: 'absolute',
+    marginTop: hp('15%'), 
+    alignItems: 'center',
+  },
+  contain: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    bottom: hp('8%'), 
+  },
+  transaction: {
+    bottom: hp('3%'), 
+  },
+  amount: {
+    fontFamily: 'Sofia Pro Bold',
+    fontSize: wp('9%'), 
+    fontWeight: '700',
+    lineHeight: wp('9%'),
+    textAlign: 'center',
+    color: '#23303B',
+  },
+  card: {
+    bottom: hp('5%'), 
+  },
+  currency: {
+    fontFamily: 'Sofia Pro',
+    fontSize: wp('5%'),
+    fontWeight: '600',
+    lineHeight: wp('7%'),
+    textAlign: 'center',
+    color: 'grey',
+  },
+  button: {
+    width: wp('85%'),
+    height: hp('8%'), 
+    top: hp('90%'), 
+    left: wp('8%'), 
+    borderRadius: wp('3%'), 
+    backgroundColor: '#456EFE',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+  },
+  buttonText: {
+    fontFamily: 'Sofia Pro',
+    fontSize: wp('5%'), 
+    fontWeight: '500',
+    lineHeight: wp('6.5%'),
+    textAlign: 'right',
+    color: '#FFFFFF',
+  },
+});
