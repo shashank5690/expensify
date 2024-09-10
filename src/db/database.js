@@ -119,6 +119,81 @@ export const getTransactions = async () => {
   }
 };
 
+export const getTransactionsByCategory = async (categoryId) => {
+  const db = await SQLite.openDatabase({ name: dbName, location: 'default' });
+  try {
+    const results = await db.executeSql(
+      'SELECT * FROM Transactions WHERE category_id = ? ORDER BY date DESC;',
+      [categoryId]
+    );
+    const transactions = [];
+    for (let i = 0; i < results[0].rows.length; i++) {
+      transactions.push(results[0].rows.item(i));
+    }
+    return transactions;
+  } catch (error) {
+    console.error('Failed to fetch transactions by category:', error);
+    throw error;
+  }
+};
+
+export const getTransactionsByMonth = async () => {
+  const db = await SQLite.openDatabase({ name: dbName, location: 'default' });
+  try {
+    const results = await db.executeSql(
+      `SELECT * FROM Transactions 
+       WHERE date >= strftime('%s', 'now', 'start of month') 
+       ORDER BY date DESC;`
+    );
+    const transactions = [];
+    for (let i = 0; i < results[0].rows.length; i++) {
+      transactions.push(results[0].rows.item(i));
+    }
+    return transactions;
+  } catch (error) {
+    console.error('Failed to fetch transactions by month:', error);
+    throw error;
+  }
+};
+
+export const getTransactionsByWeek = async () => {
+  const db = await SQLite.openDatabase({ name: dbName, location: 'default' });
+  try {
+    const results = await db.executeSql(
+      `SELECT * FROM Transactions 
+       WHERE date >= strftime('%s', 'now', 'weekday 0', '-7 days') 
+       ORDER BY date DESC;`
+    );
+    const transactions = [];
+    for (let i = 0; i < results[0].rows.length; i++) {
+      transactions.push(results[0].rows.item(i));
+    }
+    return transactions;
+  } catch (error) {
+    console.error('Failed to fetch transactions by week:', error);
+    throw error;
+  }
+};
+
+export const getTransactionsByDay = async () => {
+  const db = await SQLite.openDatabase({ name: dbName, location: 'default' });
+  try {
+    const results = await db.executeSql(
+      `SELECT * FROM Transactions 
+       WHERE date >= strftime('%s', 'now', 'start of day') 
+       ORDER BY date DESC;`
+    );
+    const transactions = [];
+    for (let i = 0; i < results[0].rows.length; i++) {
+      transactions.push(results[0].rows.item(i));
+    }
+    return transactions;
+  } catch (error) {
+    console.error('Failed to fetch transactions by day:', error);
+    throw error;
+  }
+};
+
 
 export const addTransaction = async (categoryId, amount, date, description, type) => {
   const db = await SQLite.openDatabase({ name: dbName, location: 'default' });
@@ -142,6 +217,36 @@ export const addTransaction = async (categoryId, amount, date, description, type
     throw error;
   }
 };
+
+
+export const deleteTransaction = async (transactionId) => {
+  const db = await SQLite.openDatabase({ name: dbName, location: 'default' });
+
+  try {
+    const [results] = await db.executeSql('SELECT amount, type FROM Transactions WHERE id = ?;', [transactionId]);
+
+    if (results.rows.length > 0) {
+      const { amount, type } = results.rows.item(0);
+
+      await db.executeSql('DELETE FROM Transactions WHERE id = ?;', [transactionId]);
+
+      if (type === 'Income') {
+        await db.executeSql('UPDATE IncomeExpense SET totalIncome = totalIncome - ?;', [amount]);
+      } else if (type === 'Expense') {
+        await db.executeSql('UPDATE IncomeExpense SET totalExpense = totalExpense - ?;', [amount]);
+      }
+
+      console.log('Transaction deleted and totals updated successfully');
+    } else {
+      console.error('Transaction not found for deletion');
+    }
+  } catch (error) {
+    console.error('Failed to delete transaction:', error);
+    throw error;
+  }
+};
+
+
 export const getIncomeExpenseTotals = async () => {
   const db = await SQLite.openDatabase({ name: dbName, location: 'default' });
   try {

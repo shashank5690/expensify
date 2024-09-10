@@ -31,6 +31,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
+  cardScrollViewQuickActions:{
+    marginBottom: 16,
+  },
+  cardScrollViewContentQuickAction: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 16,  
+  },
   cardWrapper: {
     width: 355,
     marginRight: 12,
@@ -39,13 +47,15 @@ const styles = StyleSheet.create({
   quickActionsText: {
     fontSize: 20,
     color: '#000',
-    marginBottom: 12,
-    marginTop: 12,
+    marginBottom: 4,
+    marginTop: 6,
     fontFamily: 'Sofia Pro Bold',
   },
+  
   actionsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    right: 16,
   },
   logoutButton: {
     width: 24,
@@ -70,18 +80,18 @@ const styles = StyleSheet.create({
     left: 2,
   },
   actionCard: {
-    width: 110,
-    height: 110,
+    width: 133,
+    height: 133,
     backgroundColor: '#fff',
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
     shadowColor: '#adb5bd',
-    shadowOffset: {width: 4, height: 8},
-    shadowOpacity: 1,
+    shadowOffset: {width: 6, height: 12},
+    shadowOpacity: 3,
     shadowRadius: 12,
     elevation: 10,
-    marginHorizontal: 6,
+    marginHorizontal: 5,
   },
   icon1: {
     marginBottom: 2,
@@ -93,19 +103,19 @@ const styles = StyleSheet.create({
     top: 10,
   },
   actionText1: {
-    fontSize: 14,
+    fontSize: 16,
     color: '#000',
     bottom: 36,
     fontFamily: 'Sofia Pro Bold',
   },
   actionText2: {
-    fontSize: 14,
+    fontSize: 16,
     fontFamily: 'Sofia Pro Bold',
     color: '#000',
     bottom: 36,
   },
   actionText3: {
-    fontSize: 14,
+    fontSize: 16,
     fontFamily: 'Sofia Pro Bold',
     color: '#000',
     top: 10,

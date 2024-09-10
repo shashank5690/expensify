@@ -27,7 +27,7 @@ const Card: React.FC = () => {
    return (
     <View style={styles.cardContainer}>
       <View style={styles.balanceRow}>
-        <Text style={styles.label}>Available Balance</Text>
+        <Text style={styles.label}>Total Expenses</Text>
         <Chip style={styles.card}/>
       </View>
       <Text style={styles.balance}>${totalExpense.toFixed(2)}</Text>

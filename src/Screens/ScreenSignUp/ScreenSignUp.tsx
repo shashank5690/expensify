@@ -18,12 +18,15 @@ import Finger from '../ScreenFingerprint/Assets/Finger';
 import MyCircleSvg from '../ScreenFingerprint/Assets/MyCircleSvg';
 import PasswordWhitebg from '../../assets/Icons/PasswordWhitebg';
 import AnimatedCheckbox from 'react-native-checkbox-reanimated';
-import { RegisterScreenProps } from '../../utils/types/interface';
+import { FingerScreenProps, LoginScreenProps, RegisterScreenProps } from '../../utils/types/interface';
 import { useDispatch } from 'react-redux';
 import { signupUser } from '../../utils/firebaseAuth';
+import { ScreenDas } from '../ScreenTransfer/utils/types';
+import { useNavigation } from '@react-navigation/native';
+import { LoginScreenPropsTemp } from '../ScreenTransfer/utils/types';
 
 
-const ScreenSignup:React.FC <RegisterScreenProps> = ({ navigation }) => {
+const ScreenSignup:React.FC <RegisterScreenProps> = () => {
   const {
     control,
     handleSubmit,
@@ -31,6 +34,13 @@ const ScreenSignup:React.FC <RegisterScreenProps> = ({ navigation }) => {
   } = useForm<SignUpFormData>({
     resolver: yupResolver(signUpSchema),
   });
+
+  const navigation=useNavigation<LoginScreenPropsTemp>();
+
+  const nav = useNavigation<FingerScreenProps>();
+
+
+
 
   const dispatch = useDispatch();
 
@@ -139,7 +149,9 @@ const ScreenSignup:React.FC <RegisterScreenProps> = ({ navigation }) => {
               {errors.password && <Text style={styles.error}>{errors.password.message}</Text>}
             </View>
             <View style={styles.finger}>
+              <TouchableOpacity onPress={() => nav.navigate('ScreenFingerprint')}>
             <PasswordWhitebg/>
+            </ TouchableOpacity>
             </View>
           </View>
 

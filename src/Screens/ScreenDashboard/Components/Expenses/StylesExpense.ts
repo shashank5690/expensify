@@ -4,22 +4,20 @@ const styles = StyleSheet.create({
     expensesText: {
       fontSize: 20,
       color: '#000',
-      marginBottom: 12,
-      marginTop: 16,
+      marginBottom: 14,
+      marginTop: -4,
       fontFamily: 'Sofia Pro Bold',
     },
     expensesContainer: {
       flexDirection: 'row',
-      borderRadius:10,
     },
     expenseBlock: {
       alignItems: 'center',
       marginRight: 12,
-      borderRadius:15,
     },
     expenseCard: {
-      width: 65,
-      height: 65,
+      width: 72,
+      height: 72,
       backgroundColor: '#e9ecef',
       borderRadius: 15,
       justifyContent: 'center',
