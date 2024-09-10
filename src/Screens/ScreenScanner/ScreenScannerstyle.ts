@@ -1,6 +1,7 @@
 import { StyleSheet } from "react-native";
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from '../../Responsive/Responsive'
 
-export  const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FFFFFF',
@@ -9,61 +10,60 @@ export  const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: 16,
+    padding: wp('4%'),
     backgroundColor: '#fff',
-    marginTop: 30,
+    marginTop: hp('4%'),
   },
   headerText: {
-    fontSize: 24,
+    fontSize: wp('6%'),
     fontWeight: '600',
     color: '#23303B',
     fontFamily: 'Sofia Pro Bold',
   },
-  QrScanner:{
-    height: 270,
-    width: 270,
+  QrScanner: {
+    height: wp('67%'), 
+    width: wp('67%'),
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius:25,
+    borderRadius: wp('6%'), 
   },
   scanningSection: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    bottom:30,
+    bottom: hp('3%'),
   },
   topEdge: {
     transform: [{ rotate: '180deg' }],
-    top: 18,
+    top: hp('2%'),
   },
   bottomEdge: {
-    bottom: 18,
+    bottom: hp('2%'),
   },
   instructionText: {
     textAlign: 'center',
-    fontSize: 18,
+    fontSize: wp('4.5%'),
     fontFamily: 'Sofia Pro Bold',
     color: '#A4A9AE',
-    marginVertical: 20,
-    paddingHorizontal: 30,
-    bottom: 110,
-    lineHeight: 28,
-    gap: 10,
+    marginVertical: hp('2%'),
+    paddingHorizontal: wp('8%'),
+    bottom: hp('12%'),
+    lineHeight: hp('3.5%'),
+    gap: hp('1%'),
   },
   scanButton: {
     backgroundColor: '#456EFE',
-    borderRadius: 12,
-    paddingVertical: 16,
-    paddingHorizontal: 110,
-    marginBottom: 40,
+    borderRadius: wp('3%'),
+    paddingVertical: hp('2%'),
+    paddingHorizontal: wp('27%'),
+    marginBottom: hp('5%'),
     alignSelf: 'center',
-    bottom:16,
+    bottom: hp('2%'),
   },
   scanButtonText: {
-    fontSize: 18,
+    fontSize: wp('4.5%'),
     color: '#FFFFFF',
     fontWeight: '600',
     fontFamily: 'Sofia Pro Bold',
   },
 });
-
