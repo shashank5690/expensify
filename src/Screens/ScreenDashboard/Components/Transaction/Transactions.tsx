@@ -64,7 +64,7 @@ const Transactions: React.FC = () => {
 
   const handleDeleteTransaction = async (id: number) => {
     Dialog.show({
-      type: ALERT_TYPE.DANGER,
+      type: ALERT_TYPE.INFO,
       title: 'Delete Transaction',
       textBody: 'Are you sure you want to delete this transaction?',
       button: 'Delete',
