@@ -33,7 +33,7 @@ const qrSlice = createSlice({
             state.typeQR = "";
             state.categoryQR = "";
             state.idQR=null;
-        },
+        }
     },
 });
 

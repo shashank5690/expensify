@@ -10,6 +10,7 @@ import { addExpense } from '../../../../utils/redux/transactionSlice';
 const Card: React.FC = () => {
   const dispatch=useDispatch()
   const [totalExpense, setTotalExpense] = useState(0);
+  const expense=useSelector((state:RootState)=>state.transaction.expenseamount)
 
   useEffect(() => {
     fetchTotals();
@@ -18,7 +19,7 @@ const Card: React.FC = () => {
   const fetchTotals = async () => {
     try {
       const totals = await getIncomeExpenseTotals();
-      setTotalExpense(totals.totalExpense);
+     // setTotalExpense(totals.totalExpense);
       dispatch(addExpense(totals.totalExpense));
     } catch (error) {
       console.error('Failed to fetch expense total', error);
@@ -30,7 +31,7 @@ const Card: React.FC = () => {
         <Text style={styles.label}>Total Expenses</Text>
         <Chip style={styles.card}/>
       </View>
-      <Text style={styles.balance}>${totalExpense.toFixed(2)}</Text>
+      <Text style={styles.balance}>${expense.toFixed(2)}</Text>
   
 
       

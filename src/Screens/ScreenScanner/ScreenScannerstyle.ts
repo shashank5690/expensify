@@ -6,6 +6,16 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFFFFF',
   },
+  containertext:{
+       flex: 1,
+       justifyContent: 'center',
+       alignItems: 'center',
+       backgroundColor: '#fff',
+  },
+  qr:{
+    height:hp('150%'),
+    width:wp('150%'),
+  },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -50,6 +60,29 @@ export const styles = StyleSheet.create({
     bottom: hp('12%'),
     lineHeight: hp('3.5%'),
     gap: hp('1%'),
+  },
+  cancel:{
+   bottom :hp('30%'),
+   backgroundColor:'green'
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: wp('4.5%'),
+    fontFamily: 'Sofia Pro Bold',
+  },
+  button: {
+   bottom:hp('15%'),
+    alignItems: 'center',
+    justifyContent: 'center',
+    left:wp('15%')
+  },
+  instructionTextscan:{
+   bottom:hp('30%'),
+   left:wp('15%'),
+   textAlign: 'center',
+   fontSize: wp('4.5%'),
+   fontFamily: 'Sofia Pro Bold',
+   color: '#A4A9AE',
   },
   scanButton: {
     backgroundColor: '#456EFE',
