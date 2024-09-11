@@ -24,7 +24,7 @@ import Transaction from '../../Utils/types';
 const Transactions: React.FC = () => {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
-
+  const [transactionsDelete,setTransactionsDelete]=useState(false);
   const fetchCategories = async () => {
     try {
       const fetchedCategories = await getCategories('Expense');

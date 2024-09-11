@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { setQRData } from './redux/qrSlice';
 import { useNavigation } from '@react-navigation/native';
 import { ScreenTransactionScanner } from '../ScreenTransfer/utils/types';
+import {styles} from './ScreenScannerstyle'
 
 const QRScanner = () => {
     const { hasPermission, requestPermission } = useCameraPermission();
@@ -57,7 +58,7 @@ const QRScanner = () => {
 
     if (hasPermission === false) {
         return (
-            <View style={styles.container}>
+            <View style={styles.containertext}>
                 <Text>Camera permission is required to use this feature.</Text>
             </View>
         );
@@ -65,7 +66,7 @@ const QRScanner = () => {
 
     return (
         <Camera
-            style={StyleSheet.absoluteFill}
+            style={styles.qr}
             device={device}
             isActive={true}
             codeScanner={codeScanner}
@@ -73,13 +74,13 @@ const QRScanner = () => {
     );
 };
 
-const styles = StyleSheet.create({
-    container: {
-       // flex: 1,
-        // justifyContent: 'center',
-        // alignItems: 'center',
-        // backgroundColor: '#fff',
-    },
-});
+// const styles = StyleSheet.create({
+//     container: {
+//        flex: 1,
+//         justifyContent: 'center',
+//         alignItems: 'center',
+//         backgroundColor: '#fff',
+//     },
+// });
 
 export default QRScanner;

@@ -6,6 +6,7 @@ interface QRState {
     categoryQR: string | null;
     descriptionQR: string | null;
     amountQR: number| null;
+    td:boolean;
 }
 
 const initialState: QRState = {
@@ -14,6 +15,7 @@ const initialState: QRState = {
     categoryQR: null,
     descriptionQR: null,
     amountQR: null,
+    td:true,
 };
 
 const qrSlice = createSlice({
@@ -34,6 +36,9 @@ const qrSlice = createSlice({
             state.categoryQR = "";
             state.idQR=null;
         },
+        transactionsD:(state)=>{
+            state.td=false;
+        }
     },
 });
 
