@@ -14,7 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setQRData,resetTransactionData } from "../ScreenScanner/redux/qrSlice";
 import { RootState } from "../../utils/redux/rootReducer";
 
-export default function AddTransaction() {
+const AddTransaction:React.FC=()=> {
   const navigation = useNavigation<ScreenTransferProps>();
   const [currentTab, setCurrentTab] = useState(0);
   const [typeSelected, setTypeSelected] = useState(""); 
@@ -197,3 +197,5 @@ function CategoryButton({ title, isSelected, setTypeSelected }: CategoryButtonPr
     </TouchableOpacity>
   );
 }
+
+export default AddTransaction;

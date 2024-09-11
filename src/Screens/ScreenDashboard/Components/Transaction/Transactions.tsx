@@ -11,6 +11,7 @@ import {
   getTransactions,
   getCategories,
   deleteTransaction,
+  getIncomeExpenseTotals,
 } from '../../../../db/database';
 import styles from './stylesTransaction';
 import {
@@ -20,11 +21,14 @@ import {
 } from 'react-native-alert-notification';
 import Category from '../../Utils/types';
 import Transaction from '../../Utils/types';
+import { useDispatch } from 'react-redux';
+import { addExpense, addIncome } from '../../../../utils/redux/transactionSlice';
 
 const Transactions: React.FC = () => {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
-  const [transactionsDelete,setTransactionsDelete]=useState(false);
+
+  const dispatch=useDispatch();
   const fetchCategories = async () => {
     try {
       const fetchedCategories = await getCategories('Expense');
@@ -74,12 +78,24 @@ const Transactions: React.FC = () => {
           setTransactions(
             transactions.filter(transaction => transaction.id !== id),
           );
+          fetchTotals();
           Dialog.hide();
         } catch (error) {
           console.error('Failed to delete transaction:', error);
         }
       },
     });
+  };
+
+
+  const fetchTotals = async () => {
+    try {
+      const totals = await getIncomeExpenseTotals();
+      dispatch(addIncome(totals.totalIncome));
+      dispatch(addExpense(totals.totalExpense));
+    } catch (error) {
+      console.error('Failed to fetch income total', error);
+    }
   };
 
   const renderTransactionItem = ({item}: {item: Transaction}) => {
