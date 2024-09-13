@@ -19,7 +19,7 @@ const QRScanner = () => {
             const permission = await requestPermission();
             if (hasPermission === null) {
            //     const permission = await requestPermission();
-                console.log('Camera permission status:', permission); 
+             //   console.log('Camera permission status:', permission); 
                 if (permission !== true) {
                     console.warn('Camera permission not granted');
                 }
@@ -49,8 +49,8 @@ const QRScanner = () => {
     const codeScanner = useCodeScanner({
         codeTypes: ['qr', 'ean-13', 'upc-a'],
         onCodeScanned: (codes) => {
-            console.log(`Scanned ${codes.length} codes!`); 
-            console.log(`Scanned code: ${codes[0].value}`); 
+          //  console.log(`Scanned ${codes.length} codes!`); 
+          //  console.log(`Scanned code: ${codes[0].value}`); 
             handleBarcodeScanned({ data: codes[0].value });
             navigation.navigate('AddTransaction');
         },

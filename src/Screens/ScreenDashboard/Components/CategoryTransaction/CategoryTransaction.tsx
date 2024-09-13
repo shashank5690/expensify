@@ -87,12 +87,14 @@ const CategoryTransaction: React.FC<CategoryTransactionProps> = ({ categoryId, o
     <View style={styles.container}>
       <Text style={styles.header}>Transactions</Text>
 
+      {transactions.length===0?<Text style={styles.noTransactionText}>Please Add Transaction</Text>:
       <FlatList
         data={transactions}
         renderItem={renderTransactionItem}
         keyExtractor={(item) => item.id.toString()}
         contentContainerStyle={styles.transactionsList}
-      />
+      />}
+
       <TouchableOpacity style={styles.closeButton} onPress={onClose}>
         <Text style={styles.closeButtonText}>Close</Text>
       </TouchableOpacity>

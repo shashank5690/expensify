@@ -86,7 +86,7 @@ const AddTransaction:React.FC=()=> {
     const transactionType = currentTab === 0 ? 'Expense' : 'Income';
     try {
       await addTransaction(selectedCategoryId, parseFloat(amount), Math.floor(date.getTime() / 1000), description, transactionType);
-      console.log('Transaction saved successfully');
+      //console.log('Transaction saved successfully');
       
       dispatch(setAmountRedux(amount));
       handleClean();
@@ -124,11 +124,21 @@ const AddTransaction:React.FC=()=> {
         />
         <Text style={styles.entryTypeText}>Select a Transaction type</Text>
         <SegmentedControl
-          values={["Expense", "Income"]}
-          selectedIndex={currentTab}
-          onChange={(event) => setCurrentTab(event.nativeEvent.selectedSegmentIndex)}
-          style={styles.segmentedControl}
-        />
+        values={["Expense", "Income"]}
+        selectedIndex={currentTab}
+        onChange={(event) => setCurrentTab(event.nativeEvent.selectedSegmentIndex)}
+        tintColor="#466EFA"  
+        backgroundColor="#F5F8FF"
+        fontStyle={{ 
+          color: '#23303B', 
+          fontFamily: 'Sofia Pro Bold'
+        }}
+        activeFontStyle={{ 
+          color: '#FFFFFF', 
+          fontFamily: 'Sofia Pro Bold'
+        }}
+        style={styles.segmentedControl}
+      />
         
         <FlatList
           data={categories}

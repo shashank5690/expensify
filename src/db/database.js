@@ -211,7 +211,7 @@ export const addTransaction = async (categoryId, amount, date, description, type
       await db.executeSql(`UPDATE IncomeExpense SET totalExpense = totalExpense + ?`, [amount]);
     }
 
-    console.log('Transaction added and totals updated successfully');
+   // console.log('Transaction added and totals updated successfully');
   } catch (error) {
     console.error('Failed to add transaction:', error);
     throw error;
@@ -236,7 +236,7 @@ export const deleteTransaction = async (transactionId) => {
         await db.executeSql('UPDATE IncomeExpense SET totalExpense = totalExpense - ?;', [amount]);
       }
 
-      console.log('Transaction deleted and totals updated successfully');
+    //  console.log('Transaction deleted and totals updated successfully');
     } else {
       console.error('Transaction not found for deletion');
     }

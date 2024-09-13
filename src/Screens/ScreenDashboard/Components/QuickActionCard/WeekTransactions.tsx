@@ -83,13 +83,13 @@ const WeekTransactions: React.FC<WeekTransactionProps> = ({ onClose }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Transactions This Week</Text>
-      <FlatList
+      {transactions.length===0?<Text style={styles.noTransactionText}>Please Add Transaction</Text>:<FlatList
         data={transactions}
         renderItem={renderTransactionItem}
         keyExtractor={(item) => item.id.toString()}
         contentContainerStyle={styles.transactionsList}
         showsVerticalScrollIndicator={false} 
-      />
+      />}
       <TouchableOpacity style={styles.closeButton} onPress={onClose}>
         <Text style={styles.closeButtonText}>Close</Text>
       </TouchableOpacity>
